@@ -92,13 +92,13 @@ Biblioteki statyczne.
 ln -s scripts/makefile.linux ./Makefile
 
 %build
-make  
+%{__make}  
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man{3,5}}
 
-make prefix=$RPM_BUILD_ROOT%{_prefix} install
+%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
