@@ -6,13 +6,13 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.6
+Version:	1.2.7
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://heanet.dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5:	2518e496ad45c3531285b58016a6be5c
+# Source0-md5:	21030102f99f81c37276403e5956d198
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
