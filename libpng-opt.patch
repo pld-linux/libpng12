@@ -18,7 +18,7 @@ diff -Nru libpng-1.0.5/scripts/makefile.linux libpng-1.0.5.new/scripts/makefile.
  
 -CFLAGS=-I$(ZLIBINC) -Wall -O3 -funroll-loops \
 -	$(ALIGN) # $(WARNMORE) -g -DPNG_DEBUG=5
-+CFLAGS=-I$(ZLIBINC) -Wall $(RPM_OPT_FLAGS) -funroll-loops \
++CFLAGS=-I$(ZLIBINC) -Wall $(OPT_FLAGS) -funroll-loops \
 +	$(ALIGN) # $(WARNMORE) -DPNG_DEBUG=5
  LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
  
@@ -42,7 +42,7 @@ diff -Nru libpng-1.0.5/scripts/makefile.linux libpng-1.0.5.new/scripts/makefile.
  
 -CFLAGS=-DPNG_USE_PNGGCCRD -I$(ZLIBINC) -Wall -O3 $(ALIGN) -funroll-loops \
 -        -fomit-frame-pointer  # $(WARNMORE) -g -DPNG_DEBUG=5
-+CFLAGS=-DPNG_USE_PNGGCCRD -I$(ZLIBINC) -Wall $(RPM_OPT_FLAGS) $(ALIGN) -funroll-loops 
++CFLAGS=-DPNG_USE_PNGGCCRD -I$(ZLIBINC) -Wall $(OPT_FLAGS) $(ALIGN) -funroll-loops 
  LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
  
  RANLIB=ranlib
