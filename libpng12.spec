@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.5
-Release:	0.2
+Release:	0.3
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -16,6 +16,7 @@ Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-revert.patch
+Provides:	libpng.so.3
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
