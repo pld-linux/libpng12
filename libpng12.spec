@@ -10,6 +10,7 @@ Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	ftp://swrinde.nde.swri.edu/pub/png/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	69569534bd0d6a9443189ba56cd89ef3	
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-pngminus.patch
 Patch2:		%{name}-badchunks.patch
