@@ -27,7 +27,11 @@ Patch7:		%{name}-clobber_list.patch
 Patch8:		%{name}-pngerror.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	zlib-devel
+%ifarch amd64 ia64 ppc64 sparc64
+Provides:	libpng.so.3()(64bit)
+%else
 Provides:	libpng.so.3
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
