@@ -13,7 +13,6 @@ Serial:		1
 Source:		ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
 Patch:          libpng-opt.patch
 Buildroot:	/tmp/%{name}-%{version}-root
-Conflicts:	glibc <= 2.0.7
 
 %description
 The PNG library is a collection of routines used to create and manipulate
