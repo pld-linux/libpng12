@@ -4,7 +4,7 @@ Summary(fr):	Librarie PNG
 Summary(pl):	Biblioteka PNG 
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.0.7
+Version:	1.0.8
 Release:	1
 Copyright:	distributable
 Group:		Libraries
