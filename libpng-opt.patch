@@ -1,15 +1,25 @@
-diff -Nur libpng-1.0.3-old/scripts/makefile.lnx libpng-1.0.3/scripts/makefile.lnx
---- libpng-1.0.3-old/scripts/makefile.lnx	Thu Jan 14 05:06:39 1999
-+++ libpng-1.0.3/scripts/makefile.lnx	Fri Jan 22 09:46:44 1999
-@@ -22,9 +22,9 @@
-          -Wmissing-declarations -Wtraditional -Wcast-align \
-          -Wstrict-prototypes -Wmissing-prototypes #-Wconversion
+diff -Nru libpng-1.0.5/scripts/makefile.linux libpng-1.0.5.new/scripts/makefile.linux
+--- libpng-1.0.5/scripts/makefile.linux	Thu Oct 14 14:43:10 1999
++++ libpng-1.0.5.new/scripts/makefile.linux	Sun Oct 17 23:10:19 1999
+@@ -11,8 +11,8 @@
+ # Where the zlib library and include files are located
+ #ZLIBLIB=/usr/local/lib
+ #ZLIBINC=/usr/local/include
+-ZLIBLIB=../zlib
+-ZLIBINC=../zlib
++ZLIBLIB=/usr/lib
++ZLIBINC=
+ 
+ ALIGN=
+ # for i386:
+@@ -24,8 +24,8 @@
+ 
+ # for pgcc version 2.95.1, -O3 is buggy; don't us it.
  
 -CFLAGS=-I$(ZLIBINC) -Wall -O3 -funroll-loops \
+-	$(ALIGN) # $(WARNMORE) -g -DPNG_DEBUG=5
 +CFLAGS=-I$(ZLIBINC) -Wall $(RPM_OPT_FLAGS) -funroll-loops \
-      $(ALIGN) # $(WARNMORE) -g -DPNG_DEBUG=5
--LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
-+LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm 
++	$(ALIGN) # $(WARNMORE) -DPNG_DEBUG=5
+ LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
  
  RANLIB=ranlib
- #RANLIB=echo
