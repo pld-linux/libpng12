@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.12
-Release:	1
+Release:	2
 Epoch:		2
 License:	Distributable
 Group:		Libraries
@@ -19,6 +19,7 @@ Patch1:		%{name}-pngminus.patch
 Patch2:		%{name}-badchunks.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libpng2
 
 %description
 The PNG library is a collection of routines used to create and
@@ -58,6 +59,7 @@ Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	zlib-devel
+Obsoletes:	libpng2-devel
 
 %description devel
 The header files and static libraries are only needed for development
