@@ -1,11 +1,11 @@
 Summary:	PNG library
 Summary(de):	PNG-Library
-Summary(fr):	Librarie PNG.
+Summary(fr):	Librarie PNG
 Summary(pl):	Biblioteki PNG 
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.3
-Release:	4
+Release:	5
 Copyright:	distributable
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -16,14 +16,29 @@ Buildroot:	/tmp/%{name}-%{version}-root
 Conflicts:	glibc <= 2.0.7
 
 %description
-The PNG library is a collection of routines used to crate and manipulate
-PNG format graphics files.  The PNG format was designed as a replacement
+The PNG library is a collection of routines used to create and manipulate
+PNG format graphics files. The PNG format was designed as a replacement
 for GIF, with many improvements and extensions.
 
 %description -l pl
 Biblioteki PNG s± kolekcj± form u¿ywanych do tworzenia i manipulowania
-plikami w formatacie graficznym PNG. format ten zosta³ stworzony jako
+plikami w formatacie graficznym PNG. Format ten zosta³ stworzony jako
 zamiennik dla formatu GIF, z wieloma rozszerzeniami i nowo¶ciami.
+
+%description -l de
+Die PNG-Library ist eine Sammlung von Routinen zum Erstellen und Bearbeiten
+von Grafiken im PNG-Format. Das PNG-Format wurde als Ersatz für GIF
+entwickelt und enthält viele Verbesserungen und Erweiterungen.
+
+%description -l fr
+La librairie PNG est un ensemble de routines utilisées pour créer et 
+manipuler des fichiers graphiques au format PNG. Le format PNG a été
+élaboré pour remplacer le GIF, avec de nombreuses améliorations et
+extensions.
+
+%description -l tr
+PNG kitaplýðý, PNG formatýndaki resim dosyalarýný iþlemeye yönelik yordamlarý
+içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ bir resim formatýdýr.
 
 %package devel
 Summary:	headers 
@@ -47,28 +62,13 @@ u¿ywaj±cych bibliotek PNG.
 Die Header-Dateien und statischen Libraries werden nur zur Entwicklung
 von Programmen mit der PNG-Library benötigt.
 
-%description -l de
-Die PNG-Library ist eine Sammlung von Routinen zum Erstellen und Bearbeiten
-von Grafiken im PNG-Format. Das PNG-Format wurde als Ersatz für GIF
-entwickelt und enthält viele Verbesserungen und Erweiterungen.
-
 %description -l fr devel
 Fichiers d'en-tete et les librairies qui sont requis seulement pour
 le développement avec la librairie PNG.
 
-%description -l fr
-La librairie PNG est un ensemble de routines utilisées pour créer et 
-manipuler des fichiers graphiques au format PNG. Le format PNG a été
-élaboré pour remplacer le GIF, avec de nombreuses améliorations et
-extensions.
-
 %description -l tr devel
 PNG kitaplýðýný kullanan programlar geliþtirmek için gereken kitaplýklar ve
 baþlýk dosyalarý.
-
-%description -l tr
-PNG kitaplýðý, PNG formatýndaki resim dosyalarýný iþlemeye yönelik yordamlarý
-içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ bir resim formatýdýr.
 
 %package	static
 Summary:	static libraries
@@ -78,10 +78,10 @@ Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
-static libraries
+Static libraries.
 
 %description -l pl static
-Biblioteki statyczne
+Biblioteki statyczne.
 
 %prep
 %setup -q
@@ -97,14 +97,13 @@ install -d $RPM_BUILD_ROOT/usr/{lib,man/man{3,5}}
 
 make prefix=$RPM_BUILD_ROOT/usr install
 
-bzip2 -9 *.txt ANNOUNCE CHANGES KNOWNBUG README
-
 install png.5 $RPM_BUILD_ROOT/usr/man/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT/usr/man/man3/
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
+gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -115,7 +114,7 @@ gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc {*.txt,ANNOUNCE,CHANGES,KNOWNBUG,README}.bz2
+%doc {*.txt,ANNOUNCE,CHANGES,KNOWNBUG,README}.gz
 %attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
 /usr/man/man3/*
@@ -127,6 +126,11 @@ gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Sun Mar 14 1999 Micha³ Kuratczyk <kura@pld.org.pl>
+  [1.0.3-5]
+- gzipping documentation (instead bzipping)
+- minor changes
+
 * Fri Mar  5 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.3-4]
 - added striping shared libraries,
