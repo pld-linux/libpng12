@@ -1,3 +1,4 @@
+%define _pre beta2
 Summary:	PNG library
 Summary(de):	PNG-Library
 Summary(es):	Biblioteca PNG
@@ -6,22 +7,22 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.5
-Release:	3
+Version:	1.2.6
+Release:	0.%{_pre}.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5: 3fc28af730f12ace49b14568de4ad934
+Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_pre}.tar.bz2
+# Source0-md5:	45c811627b6fe4d37ec191b4548da949
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-revert.patch
 Patch4:		%{name}-16bit-overflow.patch
 Patch5:		%{name}-norpath.patch
-Provides:	libpng.so.3
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	zlib-devel
+Provides:	libpng.so.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -134,7 +135,7 @@ from PNM files.
 Narzêdzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{_pre}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -157,7 +158,8 @@ ln -sf scripts/makefile.linux ./Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5},%{_pkgconfigdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}} \
+	$RPM_BUILD_ROOT{%{_pkgconfigdir},%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -165,6 +167,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5},%{_pkgconfi
 	MANPATH=%{_mandir}
 
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
+install example.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -186,6 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
