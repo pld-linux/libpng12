@@ -137,8 +137,11 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch1 -p1
 %patch2 -p1
 
-#ln -sf scripts/makefile.linux ./Makefile
+%ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
+%else
+ln -sf scripts/makefile.linux ./Makefile
+%endif
 
 %build
 %{__make} \
