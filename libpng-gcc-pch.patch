@@ -1,0 +1,16 @@
+--- libpng-1.2.8/pngconf.h.orig	2004-12-03 01:14:24.000000000 +0100
++++ libpng-1.2.8/pngconf.h	2005-02-24 21:25:44.919829640 +0100
+@@ -300,13 +300,6 @@
+ #      define PNG_SAVE_BSD_SOURCE
+ #      undef _BSD_SOURCE
+ #    endif
+-#    ifdef _SETJMP_H
+-     /* If you encounter a compiler error here, see the explanation
+-      * near the end of INSTALL.
+-      */
+-         __png.h__ already includes setjmp.h;
+-         __dont__ include it again.;
+-#    endif
+ #  endif /* __linux__ */
+ 
+    /* include setjmp.h for error handling */
