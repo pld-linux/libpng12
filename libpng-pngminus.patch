@@ -1,22 +1,18 @@
-diff -urN libpng-1.2.1.org/contrib/pngminus/makefile.std libpng-1.2.1/contrib/pngminus/makefile.std
---- libpng-1.2.1.org/contrib/pngminus/makefile.std	Wed Mar 13 11:40:24 2002
-+++ libpng-1.2.1/contrib/pngminus/makefile.std	Wed Mar 13 11:46:05 2002
-@@ -19,13 +19,13 @@
+--- libpng-1.0.14/contrib/pngminus/makefile.std.orig	Mon Jul  8 02:47:58 2002
++++ libpng-1.0.14/contrib/pngminus/makefile.std	Thu Jul 18 20:03:13 2002
+@@ -19,11 +19,11 @@
  #ZINC = -I$(ZPATH)/include
  #ZLIB = -L$(ZPATH)/lib -lz
  #ZLIBS = $(ZPATH)/lib/libz.a
 -ZINC = -I../../../zlib
 -ZLIB = -L../../../zlib -lz
 -ZLIBS = ../../../zlib/libz.a
-+ZINC = 
++ZINC =
 +ZLIB = -lz
 +ZLIBS = -lz
  
 -CFLAGS=-O3 $(PNGINC) $(ZINC)
 +CFLAGS=$(OPT_FLAGS) $(PNGINC) $(ZINC)
  LDFLAGS=$(PNGLIB) $(ZLIB)
--LDFLAGSS=$(PNGLIBS) $(ZLIBS)
-+LDFLAGSS=$(LD_FLAGS) $(PNGLIBS) $(ZLIBS)
+ LDFLAGSS=$(PNGLIBS) $(ZLIBS)
  C=.c
- O=.o
- L=.a
