@@ -5,13 +5,14 @@ Summary(pl):	Biblioteki PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.3
-Release:	3d
+Release:	4
 Copyright:	distributable
 Group:		Libraries
 Group(pl):	Biblioteki
 Source:		ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
 Patch:          libpng-opt.patch
 Buildroot:	/tmp/%{name}-%{version}-root
+Conflicts:	glibc <= 2.0.7
 
 %description
 The PNG library is a collection of routines used to crate and manipulate
@@ -91,36 +92,45 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/lib
+install -d $RPM_BUILD_ROOT/usr/{lib,man/man{3,5}}
 
 make prefix=$RPM_BUILD_ROOT/usr install
 
 bzip2 -9 *.txt ANNOUNCE CHANGES KNOWNBUG README
 
-%post -p /sbin/ldconfig
+install png.5 $RPM_BUILD_ROOT/usr/man/man5/
+install {libpngpf,libpng}.3 $RPM_BUILD_ROOT/usr/man/man3/
 
+strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
+
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(644,root,root,755)
-%lang(en) %doc *.txt.bz2
-
-%attr(755,root,root) /usr/lib/*.so.*
+%attr(755,root,root) /usr/lib/*.so.*.*
+%attr(644,root,root) /usr/man/man5/*
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %doc {ANNOUNCE,CHANGES,KNOWNBUG,README}.bz2
-
-%attr(755,root,root) /usr/lib/*.so
+%doc {*.txt,ANNOUNCE,CHANGES,KNOWNBUG,README}.bz2
+%attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
+/usr/man/man3/*
 
 %files static
-%attr(644,root,root) /usr/lib/*.a
+%attr(644,root,root) /usr/lib/lib*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Mar  5 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.3-4]
+- added striping shared libraries,
+- added installing man pages.
+
 * Fri Jan 22 1999 Pawe³ Gajda <pagaj@shadow.eu.org>
   [1.0.3-1d]
 - all files install now into /usr
