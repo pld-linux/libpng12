@@ -133,8 +133,6 @@ install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
 
-gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
-
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -148,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc *.txt ANNOUNCE CHANGES KNOWNBUG README
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*
 %{_mandir}/man3/*
