@@ -5,14 +5,15 @@ Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.8
-Release:	1
-Copyright:	distributable
+Release:	2
+Epoch:		1
+License:	Distributable
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Serial:		1
 Source0:	ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
-Patch0:		libpng-opt.patch
+Patch0:		%{name}-opt.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,6 +49,7 @@ Summary(fr):	en-têtes et bibliothèques statiques
 Summary(pl):	Pliki nag³ówkowe
 Summary(tr):	baþlýk dosyalarý ve statik kitaplýklar
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -76,6 +78,7 @@ kitaplýklar ve baþlýk dosyalarý.
 Summary:	static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -103,10 +106,7 @@ install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man{3,5}}
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	*.txt ANNOUNCE CHANGES KNOWNBUG README
+gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
