@@ -10,6 +10,7 @@ Epoch:		2
 License:	Distributable
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
@@ -75,7 +76,7 @@ développement avec la librairie PNG.
 PNG kitaplýðýný kullanan programlar geliþtirmek için gereken
 kitaplýklar ve baþlýk dosyalarý.
 
-%package	static
+%package static
 Summary:	static libraries
 Summary(pl):	Biblioteki statyczne
 Group:		Development/Libraries
@@ -93,13 +94,16 @@ Biblioteki statyczne.
 %package progs
 Summary:	libpng utility programs
 Group:		Applications/Graphics
+Group(de):	Applikationen/Grafik
+Group(pl):	Aplikacje/Grafika
 
 %description progs
-This package contains utility programs to convert png files to and from 
-pnm files 
+This package contains utility programs to convert png files to and
+from pnm files.
 
 %description -l pl progs
-Narzêdzia do konwersji plików png z lub do plików pnm
+Narzêdzia do konwersji plików png z lub do plików pnm.
+
 %prep
 %setup -q
 %patch0 -p1
