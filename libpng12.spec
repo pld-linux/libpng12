@@ -1,17 +1,17 @@
-Summary:     PNG library
-Name:        libpng
-Version:     1.0.3
-Release:     1d
-Copyright:   distributable
-Group:       Libraries
-Group(pl):   Biblioteki
-Source:      ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
-Patch:       %{name}-rh.patch
-Buildroot:   /var/tmp/%{name}-%{version}-root
-Summary(de): PNG-Library
-Summary(fr): Librarie PNG.
-Summary(tr): PNG kitaplýðý
-Summary(pl): Biblioteki PNG 
+Summary:	PNG library
+Summary(de):	PNG-Library
+Summary(fr):	Librarie PNG.
+Summary(pl):	Biblioteki PNG 
+Summary(tr):	PNG kitaplýðý
+Name:		libpng
+Version:	1.0.3
+Release:	3d
+Copyright:	distributable
+Group:		Libraries
+Group(pl):	Biblioteki
+Source:		ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
+Patch:          libpng-opt.patch
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 The PNG library is a collection of routines used to crate and manipulate
@@ -24,13 +24,14 @@ plikami w formatacie graficznym PNG. format ten zosta³ stworzony jako
 zamiennik dla formatu GIF, z wieloma rozszerzeniami i nowo¶ciami.
 
 %package devel
-Summary:     headers 
-Summary(de): Headers und statische Libraries 
-Summary(fr): en-têtes et bibliothèques statiques
-Summary(tr): baþlýk dosyalarý ve statik kitaplýklar
-Summary(pl): Pliki nag³ówkowe
-Group:       Development/Libraries
-Requires:    %{name} = %{version}
+Summary:	headers 
+Summary(de):	Headers und statische Libraries 
+Summary(fr):	en-têtes et bibliothèques statiques
+Summary(pl):	Pliki nag³ówkowe
+Summary(tr):	baþlýk dosyalarý ve statik kitaplýklar
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
 
 %description devel
 The header files and static libraries are only needed for development
@@ -67,11 +68,12 @@ baþlýk dosyalarý.
 PNG kitaplýðý, PNG formatýndaki resim dosyalarýný iþlemeye yönelik yordamlarý
 içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ bir resim formatýdýr.
 
-%package static
-Summary:     static libraries
-Summary(pl): Biblioteki statyczne
-Group:       Development/Libraries
-Requires:    %{name}-devel = %{version}
+%package	static
+Summary:	static libraries
+Summary(pl):	Biblioteki statyczne
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name}-devel = %{version}
 
 %description static
 static libraries
@@ -81,22 +83,19 @@ Biblioteki statyczne
 
 %prep
 %setup -q
+%patch -p1
 ln -s scripts/makefile.lnx ./Makefile
-%patch -p1 
 
 %build
-make \
-	prefix=/usr \
-	OPT="$RPM_OPT_FLAGS"
+make  
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/usr/lib
 
-make prefix=$RPM_BUILD_ROOT/usr/X11R6 \
-INCPATH=$RPM_BUILD_ROOT/usr/include install
+make prefix=$RPM_BUILD_ROOT/usr install
 
-mv $RPM_BUILD_ROOT/usr/X11R6/lib/*.a $RPM_BUILD_ROOT/usr/lib
+bzip2 -9 *.txt ANNOUNCE CHANGES KNOWNBUG README
 
 %post -p /sbin/ldconfig
 
@@ -104,15 +103,15 @@ mv $RPM_BUILD_ROOT/usr/X11R6/lib/*.a $RPM_BUILD_ROOT/usr/lib
 
 %files
 %defattr(644,root,root,755)
-%lang(en) %doc *.txt 
+%lang(en) %doc *.txt.bz2
 
-%attr(755,root,root) /usr/X11R6/lib/*.so.*
+%attr(755,root,root) /usr/lib/*.so.*
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %doc ANNOUNCE CHANGES KNOWNBUG README TODO
+%lang(en) %doc {ANNOUNCE,CHANGES,KNOWNBUG,README}.bz2
 
-%attr(755,root,root) /usr/X11R6/lib/*.so
+%attr(755,root,root) /usr/lib/*.so
 /usr/include/*
 
 %files static
@@ -122,19 +121,17 @@ mv $RPM_BUILD_ROOT/usr/X11R6/lib/*.a $RPM_BUILD_ROOT/usr/lib
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Jan 22 1999 Artur Frysiak <wiget@usa.net>
-[1.0.3-1d]
-- added Group(pl);
-- updated to 1.0.3;
-- removed %%version makro from patch name;
+* Fri Jan 22 1999 Pawe³ Gajda <pagaj@shadow.eu.org>
+  [1.0.3-1d]
+- all files install now into /usr
 
 * Sun Nov 15 1998 Marcin Korzonek <mkorz@shadow.eu.org>
-[1.0.2-1d]
+  [1.0.2-1d]
 - added some docs files,
 - added %%lang macros.
 
 * Thu Jul 16 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-[1.0.1-5d]
+  [1.0.1-5d]
 - build against glibc-2.1,
 - added pl translation,
 - moved %changelog at the end of spec,
@@ -142,7 +139,6 @@ rm -rf $RPM_BUILD_ROOT
 - addes static subpackage.
 
 * Thu May 07 1998 Prospector System <bugs@redhat.com>
-
 - translations modified for de, fr, tr
 
 * Thu Apr 30 1998 Cristian Gafton <gafton@redhat.com>
