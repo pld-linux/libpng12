@@ -69,6 +69,7 @@ Summary(tr):	baþlýk dosyalarý ve statik kitaplýklar
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	zlib-devel
+Conflicts:	libpng < 1.0.15
 
 %description devel
 The header files are only needed for development of programs using the
