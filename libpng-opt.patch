@@ -1,0 +1,15 @@
+diff -Nur libpng-1.0.3-old/scripts/makefile.lnx libpng-1.0.3/scripts/makefile.lnx
+--- libpng-1.0.3-old/scripts/makefile.lnx	Thu Jan 14 05:06:39 1999
++++ libpng-1.0.3/scripts/makefile.lnx	Fri Jan 22 09:46:44 1999
+@@ -22,9 +22,9 @@
+          -Wmissing-declarations -Wtraditional -Wcast-align \
+          -Wstrict-prototypes -Wmissing-prototypes #-Wconversion
+ 
+-CFLAGS=-I$(ZLIBINC) -Wall -O3 -funroll-loops \
++CFLAGS=-I$(ZLIBINC) -Wall $(RPM_OPT_FLAGS) -funroll-loops \
+      $(ALIGN) # $(WARNMORE) -g -DPNG_DEBUG=5
+-LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
++LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm 
+ 
+ RANLIB=ranlib
+ #RANLIB=echo
