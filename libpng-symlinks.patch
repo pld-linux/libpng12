@@ -1,0 +1,19 @@
+--- libpng-1.2.2/scripts/makefile.linux.wiget2	Tue Apr 16 15:59:48 2002
++++ libpng-1.2.2/scripts/makefile.linux	Tue Apr 16 16:03:10 2002
+@@ -93,14 +93,14 @@
+ 	chmod 644 $(INCPATH)/$(LIBNAME)/png.h $(INCPATH)/$(LIBNAME)/pngconf.h
+ 	-@/bin/rm -f $(INCPATH)/png.h $(INCPATH)/pngconf.h
+ 	-@/bin/rm -f $(INCPATH)/libpng
+-	ln -sf $(INCPATH)/$(LIBNAME) $(INCPATH)/libpng
++	ln -sf $(LIBNAME) $(INCPATH)/libpng
+ 
+ install-static: install-headers libpng.a
+ 	-@if [ ! -d $(LIBPATH) ]; then mkdir $(LIBPATH); fi
+ 	cp libpng.a $(LIBPATH)/$(LIBNAME).a
+ 	chmod 644 $(LIBPATH)/$(LIBNAME).a
+ 	-@/bin/rm -f $(LIBPATH)/libpng.a
+-	ln -sf $(LIBPATH)/$(LIBNAME).a $(LIBPATH)/libpng.a
++	ln -sf $(LIBNAME).a $(LIBPATH)/libpng.a
+ 
+ install-shared: install-headers $(LIBNAME).so.$(PNGVER)
+ 	-@if [ ! -d $(LIBPATH) ]; then mkdir $(LIBPATH); fi
