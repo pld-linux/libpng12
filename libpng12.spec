@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.4
-Release:	1
+Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -141,6 +141,7 @@ ln -sf scripts/makefile.linux ./Makefile
 
 %build
 %{__make} \
+	prefix=%{_prefix} \
 	OPT_FLAGS="%{rpmcflags}"
 %{__make} -C contrib/pngminus -f makefile.std \
 	OPT_FLAGS="%{rpmcflags}"
