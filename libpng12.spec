@@ -14,6 +14,7 @@ Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-opt.patch
+Patch1:		%{name}-pngminus.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -89,22 +90,42 @@ Static libraries.
 %description -l pl static
 Biblioteki statyczne.
 
+%package progs
+Summary:	libpng utility programs
+Group:		Applications/Graphics
+
+%description progs
+This package contains utility programs to convert png files to and from 
+pnm files 
+
+%description -l pl progs
+Narzêdzia do konwersji plików png z lub do plików pnm
 %prep
 %setup -q
 %patch -p1
-ln -s scripts/makefile.linux ./Makefile
+%patch1 -p1
+
+%ifarch i586 i686 \
+  ln -s scripts/makefile.gcmmx ./Makefile
+%else
+  ln -s scripts/makefile.linux ./Makefile
+%endif
 
 %build
+
 %{__make}  
+cd contrib/pngminus
+%{__make} -f makefile.std
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man{3,5}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}}
 
 %{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
+install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
 
 gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
 
@@ -129,3 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%files progs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/*
