@@ -5,7 +5,7 @@ Summary(pl):	Biblioteki PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.3
-Release:	5
+Release:	6
 Copyright:	distributable
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -92,14 +92,14 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/{lib,man/man{3,5}}
+install -d $RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man{3,5}}
 
-make prefix=$RPM_BUILD_ROOT/usr install
+make prefix=$RPM_BUILD_ROOT%{_prefix} install
 
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 
-strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	*.txt ANNOUNCE CHANGES KNOWNBUG README
@@ -127,48 +127,9 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Sun Mar 14 1999 Micha³ Kuratczyk <kura@pld.org.pl>
-  [1.0.3-5]
-- gzipping documentation (instead bzipping)
-- minor changes
-
-* Fri Mar  5 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0.3-4]
-- added striping shared libraries,
-- added "Conflicts: glibc <= 2.0.7" fr prevent installing package
-  in proper enviroment,
-- added installing man pages.
-
-* Fri Jan 22 1999 Pawe³ Gajda <pagaj@shadow.eu.org>
-  [1.0.3-1d]
-- all files install now into /usr
-
-* Sun Nov 15 1998 Marcin Korzonek <mkorz@shadow.eu.org>
-  [1.0.2-1d]
-- added some docs files,
-- added %%lang macros.
-
-* Thu Jul 16 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [1.0.1-5d]
-- build against glibc-2.1,
-- added pl translation,
-- moved %changelog at the end of spec,
-- changed permisions of *.so libs to 755,
-- addes static subpackage.
-
-* Thu May 07 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Thu Apr 30 1998 Cristian Gafton <gafton@redhat.com>
-- devel subpackage moved to Development/Libraries
-
-* Wed Apr 08 1998 Cristian Gafton <gafton@redhat.com>
-- upgraded to 1.0.1
-- added buildroot
-
-* Tue Oct 14 1997 Donnie Barnes <djb@redhat.com>
-- updated to new version
-- spec file cleanups
-
-* Thu Jul 10 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
+* Thu May 20 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.3-6]
+- based on RH spec,
+- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>,
+- package rewrited by: Micha³ Kuratczyk <kura@pld.org.pl>, Pawe³ Gajda
+  <pagaj@shadow.eu.org>, Marcin Korzonek <mkorz@shadow.eu.org> and me.
