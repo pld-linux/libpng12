@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.18
-Release:	0.1
+Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
