@@ -99,7 +99,7 @@ make prefix=$RPM_BUILD_ROOT/usr install
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
+strip $RPM_BUILD_ROOT%{_libdir}/lib*so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	*.txt ANNOUNCE CHANGES KNOWNBUG README
@@ -109,19 +109,19 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/lib/*.so.*.*
+%attr(755,root,root) %{_libdir}/*.so.*.*
 %{_mandir}/man5/*
 
 %files devel
 %defattr(644,root,root,755)
 %doc {*.txt,ANNOUNCE,CHANGES,KNOWNBUG,README}.gz
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 /usr/include/*
 %{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
