@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.5
-Release:	0.1
+Release:	0.2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -15,8 +15,9 @@ Source0:	ftp://download.sourceforge.net/pub/sourceforge/libpng/%{name}-%{version
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
-BuildRequires:	zlib-devel
+Patch3:		%{name}-revert.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -136,6 +137,7 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
@@ -169,11 +171,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc ANNOUNCE CHANGES KNOWNBUG README
 %attr(755,root,root) %{_libdir}/*.so.*.*
+%{_libdir}/libpng.so.3
 
 %files devel
 %defattr(644,root,root,755)
-%doc  *.txt ANNOUNCE CHANGES KNOWNBUG README
+%doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*
