@@ -10,6 +10,7 @@ Copyright:   distributable
 Group:       Libraries
 Source:      ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
 Patch0:      libpng-1.0.2.patch
+Icon:        png-tiny.gif
 URL:         http://www.cdrom.com/pub/png/
 Buildroot:   /tmp/%{name}-%{version}-root
 
@@ -114,6 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 - added -q %setup parameter,
 - added using %%{name} and %%{version} macros in Buildroot,
 - added %clean section,
+- added package icon,
 - added URL,
 - added striping sharebd lib,
 - added "%ifos Linux .. %endif" around making sym link to proper Makefile,
