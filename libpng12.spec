@@ -15,6 +15,7 @@ Source0:	http://download.sourceforge.net/libpng/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
+BuildReq:	zlib-devel
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
