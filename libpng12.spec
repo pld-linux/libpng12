@@ -7,7 +7,7 @@ Name:		libpng
 Version:	1.2.0
 Release:	1
 Epoch:		2
-License:	Distributable
+License:	distributable
 Group:		Libraries
 Group(de):	Libraries
 Group(es):	Bibliotecas
