@@ -1,4 +1,6 @@
-%define _pre beta2
+#
+%define		_pre	beta2
+#
 Summary:	PNG library
 Summary(de):	PNG-Library
 Summary(es):	Biblioteca PNG
