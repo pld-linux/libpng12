@@ -6,9 +6,9 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.2
-Release:	2
-Epoch:		2
+Version:	1.2.3
+Release:	1
+Epoch:		1
 License:	distributable
 Group:		Libraries
 Source0:	http://download.sourceforge.net/libpng/%{name}-%{version}.tar.gz
@@ -159,7 +159,6 @@ install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
 sed -e 's=@PREFIX@=%{_prefix}=g' scripts/libpng.pc.in >$RPM_BUILD_ROOT/%{_pkgconfigdir}/libpng`echo %{version}|sed 's/\([0-9]\+\)\.\([0-9]\+\)\..*/\1\2/'`.pc
 
-gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -173,7 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc  *.txt ANNOUNCE CHANGES KNOWNBUG README
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*
 %{_includedir}/*
