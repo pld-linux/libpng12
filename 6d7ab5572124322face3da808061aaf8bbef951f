@@ -1,0 +1,2 @@
+- updated to 1.0.14: importand security fix (fix some memory leaks and
+  eliminates a vulnerability to buffer overflow in the progressive reader).
