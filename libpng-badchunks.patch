@@ -1,0 +1,18 @@
+--- libpng-1.0.8/pngrutil.c.sux	Mon Oct 30 18:22:31 2000
++++ libpng-1.0.8/pngrutil.c	Mon Oct 30 18:24:16 2000
+@@ -1041,8 +1041,13 @@
+    chunkdata = png_decompress_chunk(png_ptr, compression_type, chunkdata,
+                                     slength, prefix_length, &data_length);
+ 
+-   png_set_iCCP(png_ptr, info_ptr, chunkdata, compression_type,
+-                chunkdata + prefix_length, data_length);
++   if(chunkdata)
++      png_set_iCCP(png_ptr, info_ptr, chunkdata, compression_type,
++                   chunkdata + prefix_length, data_length);
++   else
++      png_set_iCCP(png_ptr, info_ptr, chunkdata, compression_type,
++                   0x00, prefix_length);
++
+    png_free(png_ptr, chunkdata);
+ }
+ #endif /* PNG_READ_iCCP_SUPPORTED */
