@@ -102,15 +102,16 @@ install {libpngpf,libpng}.3 $RPM_BUILD_ROOT/usr/man/man3/
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
-gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+	*.txt ANNOUNCE CHANGES KNOWNBUG README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
+%defattr(644,root,root,755)
 %attr(755,root,root) /usr/lib/*.so.*.*
-%attr(644,root,root) /usr/man/man5/*
+/usr/man/man5/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -120,7 +121,8 @@ gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
 /usr/man/man3/*
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%defattr(644,root,root,755)
+/usr/lib/lib*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
