@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.9
-Release:	1
+Release:	2
 Epoch:		2
 License:	Distributable
 Group:		Libraries
@@ -55,6 +55,7 @@ Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Requires:	zlib-devel
 
 %description devel
 The header files and static libraries are only needed for development
