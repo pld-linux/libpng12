@@ -4,8 +4,8 @@ Summary(fr):	Librarie PNG
 Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.0.15
-Release:	4
+Version:	1.0.17
+Release:	0.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -15,11 +15,15 @@ Patch0:		%{name}-opt.patch
 Patch1:		%{name}-pngminus.patch
 Patch2:		%{name}-badchunks.patch
 Patch3:		%{name}-SONAME.patch
-Patch4:		%{name}-16bit-overflow.patch
-Patch5:		%{name}-pngerror.patch
-Patch6:		%{name}-security.patch
+Patch4:		%{name}-libdirfix.patch
+Patch5:		%{name}-alpha.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
+BuildRequires:	zlib-devel
+%ifarch amd64 ia64 ppc64 s390x sparc64
+Provides:	libpng10.so.0()(64bit)
+%else
 Provides:	libpng10.so.0
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpng2
 
@@ -41,7 +45,7 @@ extensions.
 
 %description -l pl
 Biblioteka PNG to zestaw funkcji u¿ywanych do tworzenia i obróbki
-plików w formatacie graficznym PNG. Format ten zosta³ stworzony jako
+plików w formacie graficznym PNG. Format ten zosta³ stworzony jako
 zamiennik dla formatu GIF, z wieloma ulepszeniami i rozszerzeniami.
 
 %description -l tr
@@ -56,7 +60,7 @@ Summary(fr):	En-têtes et bibliothèques statiques
 Summary(pl):	Pliki nag³ówkowe libpng
 Summary(tr):	Baþlýk dosyalarý ve statik kitaplýklar
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
 Obsoletes:	libpng2-devel
 
@@ -84,7 +88,7 @@ kitaplýklar ve baþlýk dosyalarý.
 Summary:	Static libpng libraries
 Summary(pl):	Biblioteki statyczne libpng
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static libraries.
@@ -96,7 +100,7 @@ Biblioteki statyczne.
 Summary:	libpng utility programs
 Summary(pl):	Programy u¿ytkowe libpng
 Group:		Applications/Graphics
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description progs
 This package contains utility programs to convert png files to and
@@ -113,19 +117,20 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 ln -s scripts/makefile.linux ./Makefile
 
 %build
 %{__make} \
+	prefix=%{_prefix} \
+	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
-	OPT_FLAGS="%{rpmcflags}" \
-	prefix=%{_prefix}
+	OPT_FLAGS="%{rpmcflags}"
 
 %{__make} -C contrib/pngminus -f makefile.std \
+	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
-	OPT_FLAGS="%{rpmcflags} -I../../"
+	OPT_FLAGS="%{rpmcflags} -I../.."
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -134,6 +139,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man{3,5}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	prefix=%{_prefix} \
+	LIBPATH=%{_libdir} \
 	MANPATH=%{_mandir}
 
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
@@ -156,7 +162,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*
 %{_pkgconfigdir}/libpng*.pc
-%{_mandir}/man[35]/*
+%{_mandir}/man?/*
 
 %files static
 %defattr(644,root,root,755)
