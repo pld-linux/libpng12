@@ -11,13 +11,6 @@ Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	âÉÂÌÉÏÔÅËÉ
-Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	http://download.sourceforge.net/libpng/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
@@ -70,13 +63,6 @@ Summary(pl):	Pliki nag³ówkowe libpng
 Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas
 Summary(tr):	başlık dosyaları ve statik kitaplıklar
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 Requires:	zlib-devel
 
@@ -115,13 +101,6 @@ Summary(es):	Static libraries for libpng development
 Summary(pl):	Biblioteki statyczne PNG
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libpng
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -143,9 +122,6 @@ Bibliotecas estáticas para desenvolvimento com libpng.
 Summary:	libpng utility programs
 Summary(pl):	Narzêdzia do plików PNG
 Group:		Applications/Graphics
-Group(de):	Applikationen/Grafik
-Group(pl):	Aplikacje/Grafika
-Group(pt):	Aplicações/Gráficos
 
 %description progs
 This package contains utility programs to convert png files to and
