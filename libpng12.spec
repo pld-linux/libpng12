@@ -17,8 +17,6 @@ Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-symlinks.patch
 BuildRequires:	zlib-devel
-# remember to remove this if you remove libpng.so.3 symlink from %%file
-Provides:	libpng.so.3
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -171,8 +169,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so.*.*
-# for compatibility with libpng 1.2.[01]
-%attr(755,root,root) %{_libdir}/*.so.3
 
 %files devel
 %defattr(644,root,root,755)
