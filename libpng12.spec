@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.15
-Release:	1
+Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -16,6 +16,7 @@ Patch1:		%{name}-pngminus.patch
 Patch2:		%{name}-badchunks.patch
 Patch3:		%{name}-SONAME.patch
 Patch4:		%{name}-16bit-overflow.patch
+Patch5:		%{name}-pngerror.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 Provides:	libpng10.so.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -110,6 +111,7 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 ln -s scripts/makefile.linux ./Makefile
 
