@@ -122,6 +122,12 @@ mv $RPM_BUILD_ROOT/usr/X11R6/lib/*.a $RPM_BUILD_ROOT/usr/lib
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Fri Jan 22 1999 Artur Frysiak <wiget@usa.net>
+[1.0.3-1d]
+- added Group(pl);
+- updated to 1.0.3;
+- removed %%version makro from patch name;
+
 * Sun Nov 15 1998 Marcin Korzonek <mkorz@shadow.eu.org>
 [1.0.2-1d]
 - added some docs files,
