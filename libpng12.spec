@@ -4,12 +4,14 @@ Summary(fr): Librarie PNG.
 Summary(pl): Biblioteka PNG
 Summary(tr): PNG kitaplýðý
 Name:        libpng
-Version:     1.0.2
-Release:     1
+Version:     1.0.1
+Release:     7
 Copyright:   distributable
 Group:       Libraries
+Group(pl):   Biblioteki
+Serial:      1
 Source:      ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
-Patch0:      libpng-1.0.2.patch
+Patch0:      libpng-rh.patch
 Icon:        png-tiny.gif
 URL:         http://www.cdrom.com/pub/png/
 Buildroot:   /tmp/%{name}-%{version}-root
@@ -38,6 +40,7 @@ içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ bir resim formatýdýr.
 Summary:     header files an documentation for PNG library
 Summary(pl): Pliki nag³owkowe i dokumentacja do biblioteki PNG
 Group:       Development/Libraries
+Serial:      1
 Requires:    %{name} = %{version}
 
 %description devel
@@ -60,6 +63,7 @@ baþlýk dosyalarý.
 Summary:     PNG static library
 Summary(pl): Biblioteka PNG - wersja statyczna
 Group:       Development/Libraries
+Serial:      1
 Requires:    %{name}-devel = %{version}
 
 %description static
@@ -70,30 +74,33 @@ Bibliotek PNG - wersja statyczna
 
 %prep
 %setup -q
-%patch0 -p1
-
 %ifos Linux
 ln -sf scripts/makefile.lnx Makefile
 %endif
+%patch0 -p1
+
 
 %build
-make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/man/man3
+install -d $RPM_BUILD_ROOT/usr/man/man{3,5}
 
 make install prefix=$RPM_BUILD_ROOT/usr
-install {libpng,libpngpf}.3 $RPM_BUILD_ROOT/usr/man/man3
+install *.3 $RPM_BUILD_ROOT/usr/man/man3
+install *.5 $RPM_BUILD_ROOT/usr/man/man5
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man{3,5}/*
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
 %attr(755, root, root) /usr/lib/lib*.so.*.*
+%attr(644, root,  man) /usr/man/man5/*
 
 %files devel
 %defattr(644, root, root, 755)
@@ -109,6 +116,12 @@ strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue Dec 29 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.1-7]
+- added gzipping man pages,
+- added man pages level 5,
+- downgrade to 1.0.1 (added Serial).
+
 * Sat Aug  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.2-1]
 - added pl translation,
