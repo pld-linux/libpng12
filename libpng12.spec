@@ -21,6 +21,7 @@ Patch3:		%{name}-revert.patch
 Patch4:		%{name}-16bit-overflow.patch
 Patch5:		%{name}-norpath.patch
 Patch6:		%{name}-libdirfix.patch
+Patch7:		%{name}-clobber_list.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	zlib-devel
 Provides:	libpng.so.3
@@ -71,7 +72,7 @@ Summary(pl):	Pliki nag³ówkowe libpng
 Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas
 Summary(tr):	baþlýk dosyalarý ve statik kitaplýklar
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
 Conflicts:	libpng < 1.0.15
 
@@ -109,7 +110,7 @@ Summary(de):	Statischen PNG Libraries
 Summary(pl):	Biblioteki statyczne PNG
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libpng
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static PNG libraries.
@@ -144,6 +145,7 @@ Narzêdzia do konwersji plików PNG z lub do plików PNM.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
