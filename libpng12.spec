@@ -6,8 +6,8 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.4
-Release:	2
+Version:	1.2.5
+Release:	0.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -137,7 +137,8 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch1 -p1
 %patch2 -p1
 
-ln -sf scripts/makefile.linux ./Makefile
+#ln -sf scripts/makefile.linux ./Makefile
+ln -sf scripts/makefile.gcmmx ./Makefile
 
 %build
 %{__make} \
