@@ -110,10 +110,10 @@ Narzêdzia do konwersji plików png z lub do plików pnm
 ln -s scripts/makefile.linux ./Makefile
 
 %build
-%{__make} OPT_FLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}"
+%{__make} OPT_FLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
 cd contrib/pngminus
 %{__make} -f makefile.std \
-	OPT_FLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS} -I../../"
+	OPT_FLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -I../../"
 
 %install
 rm -rf $RPM_BUILD_ROOT
