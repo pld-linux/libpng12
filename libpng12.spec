@@ -1,10 +1,10 @@
 Summary:	PNG library
 Summary(de):	PNG-Library
 Summary(fr):	Librarie PNG
-Summary(pl):	Biblioteki PNG 
+Summary(pl):	Biblioteka PNG 
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.0.5
+Version:	1.0.6
 Release:	1
 Copyright:	distributable
 Group:		Libraries
