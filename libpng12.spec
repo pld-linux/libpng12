@@ -125,11 +125,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%changelog
-* Thu May 20 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0.3-6]
-- based on RH spec,
-- pl translation by Wojtek ¦lusarczyk <wojtek@shadow.eu.org>,
-- package rewrited by: Micha³ Kuratczyk <kura@pld.org.pl>, Pawe³ Gajda
-  <pagaj@shadow.eu.org>, Marcin Korzonek <mkorz@shadow.eu.org> and me.
