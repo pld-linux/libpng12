@@ -5,7 +5,7 @@ Summary(pl):	Biblioteka PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.0.8
-Release:	5
+Release:	6
 Epoch:		2
 License:	Distributable
 Group:		Libraries
@@ -15,6 +15,7 @@ Group(pl):	Biblioteki
 Source0:	ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-pngminus.patch
+Patch2:		%{name}-badchunks.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -102,8 +103,9 @@ pnm files
 Narzêdzia do konwersji plików png z lub do plików pnm
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 ln -s scripts/makefile.linux ./Makefile
 
