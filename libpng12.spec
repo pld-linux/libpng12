@@ -15,7 +15,6 @@ Source0:	http://download.sourceforge.net/libpng/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
-Patch3:		%{name}-symlinks.patch
 BuildRequires:	zlib-devel
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -137,7 +136,6 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 ln -sf scripts/makefile.linux ./Makefile
 
@@ -152,19 +150,17 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5},%{_pkgconfigdir}}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT%{_prefix}
+	DESTDIR=$RPM_BUILD_ROOT \
+	prefix=%{_prefix} \
+	MANPATH=%{_mandir}
 
-install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
-install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
-sed -e 's=@PREFIX@=%{_prefix}=g' scripts/libpng.pc.in >$RPM_BUILD_ROOT/%{_pkgconfigdir}/libpng`echo %{version}|sed 's/\([0-9]\+\)\.\([0-9]\+\)\..*/\1\2/'`.pc
-
-
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -173,6 +169,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc  *.txt ANNOUNCE CHANGES KNOWNBUG README
+%attr(755,root,root) %{_bindir}/libpng*-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*
 %{_includedir}/*
@@ -184,4 +181,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files progs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/p*
