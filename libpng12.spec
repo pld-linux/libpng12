@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 - added %clean section,
 - added package icon,
 - added URL,
-- added striping sharebd lib,
+- added stripping sharebd lib,
 - added "%ifos Linux .. %endif" around making sym link to proper Makefile,
 - Buildroot changed to /tmp/%%{name}-%%{version}-root,
 - added man pages to devel,
