@@ -116,7 +116,7 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 %defattr(644,root,root,755)
 %doc {*.txt,ANNOUNCE,CHANGES,KNOWNBUG,README}.gz
 %attr(755,root,root) %{_libdir}/lib*.so
-/usr/include/*
+%{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
