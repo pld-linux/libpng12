@@ -1,6 +1,5 @@
-diff -Nur libpng-1.0.15.orig/scripts/makefile.linux libpng-1.0.15/scripts/makefile.linux
---- libpng-1.0.15.orig/scripts/makefile.linux	Thu Jan  9 22:20:03 2003
-+++ libpng-1.0.15/scripts/makefile.linux	Thu Jan  9 22:36:26 2003
+--- libpng-1.0.17/scripts/makefile.linux.orig	2004-10-15 13:34:40.000000000 +0200
++++ libpng-1.0.17/scripts/makefile.linux	2004-10-15 13:40:18.000000000 +0200
 @@ -3,8 +3,8 @@
  # Copyright (C) 1996, 1997 Andreas Dilger
  # For conditions of distribution and use, see copyright notice in png.h
@@ -9,7 +8,7 @@ diff -Nur libpng-1.0.15.orig/scripts/makefile.linux libpng-1.0.15/scripts/makefi
 -PNGMAJ = 0
 +LIBNAME = libpng
 +PNGMAJ = 2
- PNGMIN = 1.0.15
+ PNGMIN = 1.0.17
  PNGVER = $(PNGMAJ).$(PNGMIN)
  
 @@ -34,7 +34,7 @@
@@ -40,7 +39,7 @@ diff -Nur libpng-1.0.15.orig/scripts/makefile.linux libpng-1.0.15/scripts/makefi
  
  pngtest: pngtest.o $(LIBNAME).so
  	$(CC) -o pngtest $(CFLAGS) pngtest.o $(LDFLAGS)
-@@ -123,42 +123,41 @@
+@@ -124,43 +123,42 @@
  
  install-headers: png.h pngconf.h
  	-@if [ ! -d $(DI) ]; then mkdir $(DI); fi
@@ -69,6 +68,7 @@ diff -Nur libpng-1.0.15.orig/scripts/makefile.linux libpng-1.0.15/scripts/makefi
 +	libpng10.so.0.$(PNGMIN)
  	-@if [ ! -d $(DL) ]; then mkdir $(DL); fi
  	-@/bin/rm -f $(DL)/$(LIBNAME).so.$(PNGVER)* $(DL)/$(LIBNAME).so
+-	-@/bin/rm -f $(DL)/$(LIBNAME).so.$(PNGMAJ)
 -	-@/bin/rm -f $(DL)/libpng.so
 -	-@/bin/rm -f $(DL)/libpng.so.2
 -	-@/bin/rm -f $(DL)/libpng.so.2.$(PNGMIN)*
@@ -76,7 +76,7 @@ diff -Nur libpng-1.0.15.orig/scripts/makefile.linux libpng-1.0.15/scripts/makefi
 +	-@/bin/rm -f $(DL)/libpng10.so.0
 +	-@/bin/rm -f $(DL)/libpng10.so.0.$(PNGMIN)*
  	cp $(LIBNAME).so.$(PNGVER) $(DL)
--	cp libpng.so.2.$(PNGMIN) $(DL)
+ 	cp libpng.so.2.$(PNGMIN) $(DL)
  	chmod 755 $(DL)/$(LIBNAME).so.$(PNGVER)
 -	chmod 755 $(DL)/libpng.so.2.$(PNGMIN)
  	(cd $(DL); \
@@ -98,7 +98,7 @@ diff -Nur libpng-1.0.15.orig/scripts/makefile.linux libpng-1.0.15/scripts/makefi
  
  install-man: libpng.3 libpngpf.3 png.5
  	-@if [ ! -d $(DM) ]; then mkdir $(DM); fi
-@@ -178,7 +176,7 @@
+@@ -179,7 +177,7 @@
  	-@/bin/rm -f $(DB)/$(LIBNAME)-config
  	cp libpng-config $(DB)/$(LIBNAME)-config
  	chmod 755 $(DB)/$(LIBNAME)-config
