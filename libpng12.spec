@@ -154,9 +154,11 @@ ln -sf scripts/makefile.linux ./Makefile
 %build
 %{__make} \
 	prefix=%{_prefix} \
+	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
 	OPT_FLAGS="%{rpmcflags}"
 %{__make} -C contrib/pngminus -f makefile.std \
+	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
 	OPT_FLAGS="%{rpmcflags}"
 
@@ -168,6 +170,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}} \
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	prefix=%{_prefix} \
+	LIBPATH=%{_libdir} \
 	MANPATH=%{_mandir}
 
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
