@@ -23,3 +23,26 @@ diff -Nru libpng-1.0.5/scripts/makefile.linux libpng-1.0.5.new/scripts/makefile.
  LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
  
  RANLIB=ranlib
+--- libpng-1.0.8/scripts/makefile.gcmmx.old	Mon Jul 24 13:34:14 2000
++++ libpng-1.0.8/scripts/makefile.gcmmx	Wed Nov  1 13:29:17 2000
+@@ -13,8 +13,8 @@
+ # Where the zlib library and include files are located
+ #ZLIBLIB=/usr/local/lib
+ #ZLIBINC=/usr/local/include
+-ZLIBLIB=../zlib
+-ZLIBINC=../zlib
++ZLIBLIB=/usr/lib
++ZLIBINC=
+ 
+ ALIGN=
+ # for i386:
+@@ -26,8 +26,7 @@
+ 
+ # for pgcc version 2.95.1, -O3 is buggy; don't use it.
+ 
+-CFLAGS=-DPNG_USE_PNGGCCRD -I$(ZLIBINC) -Wall -O3 $(ALIGN) -funroll-loops \
+-        -fomit-frame-pointer  # $(WARNMORE) -g -DPNG_DEBUG=5
++CFLAGS=-DPNG_USE_PNGGCCRD -I$(ZLIBINC) -Wall $(RPM_OPT_FLAGS) $(ALIGN) -funroll-loops 
+ LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng -lz -lm
+ 
+ RANLIB=ranlib
