@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.2
-Release:	1
+Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -149,7 +149,7 @@ ln -sf scripts/makefile.linux ./Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5},%{_pkgconfigdir}}
 
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_prefix}
@@ -157,6 +157,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}}
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
+sed -e 's=@PREFIX@=%{_prefix}=g' scripts/libpng.pc.in >$RPM_BUILD_ROOT/%{_pkgconfigdir}/libpng`echo %{version}|sed 's/\([0-9]\+\)\.\([0-9]\+\)\..*/\1\2/'`.pc
 
 gzip -9nf *.txt ANNOUNCE CHANGES KNOWNBUG README
 
