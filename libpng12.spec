@@ -69,7 +69,7 @@ Summary(pl):	Pliki nag³ówkowe libpng
 Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas
 Summary(tr):	baþlýk dosyalarý ve statik kitaplýklar
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 Requires:	zlib-devel
 Conflicts:	libpng < 1.0.15
 
@@ -107,7 +107,7 @@ Summary(de):	Statischen PNG Libraries
 Summary(pl):	Biblioteki statyczne PNG
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libpng
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 Static PNG libraries.
