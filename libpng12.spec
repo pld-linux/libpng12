@@ -107,6 +107,9 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so.*.*
@@ -122,9 +125,6 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Thu May 20 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
