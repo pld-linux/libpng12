@@ -1,0 +1,66 @@
+diff -Nur libpng-1.2.5.orig/scripts/makefile.gcmmx libpng-1.2.5/scripts/makefile.gcmmx
+--- libpng-1.2.5.orig/scripts/makefile.gcmmx	Sat Oct 12 01:00:37 2002
++++ libpng-1.2.5/scripts/makefile.gcmmx	Sat Oct 12 01:05:56 2002
+@@ -125,14 +125,12 @@
+ 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ)
+ 
+ $(LIBNAME).so.$(PNGVER): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) \
++	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) -lz -lm \
+ 	-o $(LIBNAME).so.$(PNGVER) \
+ 	$(OBJSDLL)
+ 
+-libpng.so.3.$(PNGMIN): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,libpng.so.3 \
+-	-o libpng.so.3.$(PNGMIN) \
+-	$(OBJSDLL)
++libpng.so.3.$(PNGMIN): $(LIBNAME).so.$(PNGVER)
++	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN)
+ 
+ pngtest: pngtest.o $(LIBNAME).so
+ 	$(CC) -o pngtest $(CFLAGS) pngtest.o $(LDFLAGS)
+@@ -174,10 +172,9 @@
+ 	-@/bin/rm -f $(DL)/libpng.so.3
+ 	-@/bin/rm -f $(DL)/libpng.so.3.$(PNGMIN)*
+ 	cp $(LIBNAME).so.$(PNGVER) $(DL)
+-	cp libpng.so.3.$(PNGMIN) $(DL)
+ 	chmod 755 $(DL)/$(LIBNAME).so.$(PNGVER)
+-	chmod 755 $(DL)/libpng.so.3.$(PNGMIN)
+ 	(cd $(DL); \
++	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN); \
+ 	ln -sf libpng.so.3.$(PNGMIN) libpng.so.3; \
+ 	ln -sf libpng.so.3 libpng.so; \
+ 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ); \
+diff -Nur libpng-1.2.5.orig/scripts/makefile.linux libpng-1.2.5/scripts/makefile.linux
+--- libpng-1.2.5.orig/scripts/makefile.linux	Sat Oct 12 01:00:37 2002
++++ libpng-1.2.5/scripts/makefile.linux	Sat Oct 12 01:05:55 2002
+@@ -97,14 +97,12 @@
+ 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ)
+ 
+ $(LIBNAME).so.$(PNGVER): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) \
++	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) -lz -lm \
+ 	-o $(LIBNAME).so.$(PNGVER) \
+ 	$(OBJSDLL)
+ 
+-libpng.so.3.$(PNGMIN): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,libpng.so.3 \
+-	-o libpng.so.3.$(PNGMIN) \
+-	$(OBJSDLL)
++libpng.so.3.$(PNGMIN): $(LIBNAME).so.$(PNGVER)
++	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN)
+ 
+ pngtest: pngtest.o $(LIBNAME).so
+ 	$(CC) -o pngtest $(CFLAGS) pngtest.o $(LDFLAGS)
+@@ -146,10 +144,9 @@
+ 	-@/bin/rm -f $(DL)/libpng.so.3
+ 	-@/bin/rm -f $(DL)/libpng.so.3.$(PNGMIN)*
+ 	cp $(LIBNAME).so.$(PNGVER) $(DL)
+-	cp libpng.so.3.$(PNGMIN) $(DL)
+ 	chmod 755 $(DL)/$(LIBNAME).so.$(PNGVER)
+-	chmod 755 $(DL)/libpng.so.3.$(PNGMIN)
+ 	(cd $(DL); \
++	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN); \
+ 	ln -sf libpng.so.3.$(PNGMIN) libpng.so.3; \
+ 	ln -sf libpng.so.3 libpng.so; \
+ 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ); \
