@@ -8,7 +8,7 @@ Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.3
 Release:	1
-Epoch:		1
+Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://download.sourceforge.net/libpng/%{name}-%{version}.tar.gz
