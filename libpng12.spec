@@ -4,8 +4,8 @@ Summary(fr):	Librarie PNG
 Summary(pl):	Biblioteki PNG 
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.0.3
-Release:	6
+Version:	1.0.5
+Release:	1
 Copyright:	distributable
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -85,7 +85,7 @@ Biblioteki statyczne.
 %prep
 %setup -q
 %patch -p1
-ln -s scripts/makefile.lnx ./Makefile
+ln -s scripts/makefile.linux ./Makefile
 
 %build
 make  
