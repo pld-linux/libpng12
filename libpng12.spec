@@ -1,5 +1,5 @@
 #
-%define		_pre	beta2
+%define		_pre	rc1
 #
 Summary:	PNG library
 Summary(de):	PNG-Library
@@ -10,20 +10,18 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.6
-Release:	0.%{_pre}.6
+Release:	0.%{_pre}.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_pre}.tar.bz2
-# Source0-md5:	45c811627b6fe4d37ec191b4548da949
+# Source0-md5:	346bd648912e31fd4ff900b25979f5f2
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-revert.patch
-Patch4:		%{name}-16bit-overflow.patch
 Patch5:		%{name}-norpath.patch
 Patch6:		%{name}-libdirfix.patch
-Patch7:		%{name}-clobber_list.patch
 Patch8:		%{name}-pngerror.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	zlib-devel
@@ -149,11 +147,9 @@ Narzêdzia do konwersji plików PNG z lub do plików PNM.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
+#%patch8 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
