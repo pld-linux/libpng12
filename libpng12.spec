@@ -129,6 +129,8 @@ rm -rf $RPM_BUILD_ROOT
 * Fri Mar  5 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.3-4]
 - added striping shared libraries,
+- added "Conflicts: glibc <= 2.0.7" fr prevent installing package
+  in proper enviroment,
 - added installing man pages.
 
 * Fri Jan 22 1999 Pawe³ Gajda <pagaj@shadow.eu.org>
