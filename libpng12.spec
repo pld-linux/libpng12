@@ -17,6 +17,7 @@ Source0:	ftp://swrinde.nde.swri.edu/pub/png/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-pngminus.patch
 Patch2:		%{name}-badchunks.patch
+Patch3:		%{name}-SONAME.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libpng2
@@ -114,20 +115,26 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 ln -s scripts/makefile.linux ./Makefile
 
 %build
-%{__make} OPT_FLAGS="%{rpmcflags}"
+%{__make} \
+	CC="%{__cc}" \
+	OPT_FLAGS="%{rpmcflags}"
 cd contrib/pngminus
 %{__make} -f makefile.std \
+	CC="%{__cc}" \
 	OPT_FLAGS="%{rpmcflags} -I../../"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}}
 
-%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	prefix=%{_prefix}
 
 install png.5 $RPM_BUILD_ROOT%{_mandir}/man5/
 install {libpngpf,libpng}.3 $RPM_BUILD_ROOT%{_mandir}/man3/
@@ -147,6 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc *.txt ANNOUNCE CHANGES KNOWNBUG README
+%attr(755,root,root) %{_bindir}/libpng-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*
 %{_mandir}/man3/*
@@ -157,4 +165,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files progs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/png2*
