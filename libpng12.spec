@@ -4,7 +4,7 @@ Summary(fr):	Librarie PNG
 Summary(pl):	Biblioteka PNG 
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.0.10
+Version:	1.0.11
 Release:	1
 Epoch:		2
 License:	Distributable
@@ -13,7 +13,7 @@ Group(de):	Libraries
 Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	http://www.libpng.org/pub/png/src/%{name}-%{version}.tar.gz
+Source0:	ftp://swrinde.nde.swri.edu/pub/png/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-pngminus.patch
 Patch2:		%{name}-badchunks.patch
