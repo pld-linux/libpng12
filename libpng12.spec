@@ -1,30 +1,57 @@
 Summary:     PNG library
-Summary(de): PNG-Library
-Summary(fr): Librarie PNG.
-Summary(pl): Biblioteka PNG
-Summary(tr): PNG kitaplýðý
 Name:        libpng
-Version:     1.0.1
-Release:     7
+Version:     1.0.3
+Release:     1d
 Copyright:   distributable
 Group:       Libraries
 Group(pl):   Biblioteki
-Serial:      1
 Source:      ftp://ftp.uu.net/graphics/png/src/%{name}-%{version}.tar.gz
-Patch0:      libpng-rh.patch
-Icon:        png-tiny.gif
-URL:         http://www.cdrom.com/pub/png/
-Buildroot:   /tmp/%{name}-%{version}-root
+Patch:       %{name}-rh.patch
+Buildroot:   /var/tmp/%{name}-%{version}-root
+Summary(de): PNG-Library
+Summary(fr): Librarie PNG.
+Summary(tr): PNG kitaplýðý
+Summary(pl): Biblioteki PNG 
 
 %description
 The PNG library is a collection of routines used to crate and manipulate
 PNG format graphics files.  The PNG format was designed as a replacement
 for GIF, with many improvements and extensions.
 
+%description -l pl
+Biblioteki PNG s± kolekcj± form u¿ywanych do tworzenia i manipulowania
+plikami w formatacie graficznym PNG. format ten zosta³ stworzony jako
+zamiennik dla formatu GIF, z wieloma rozszerzeniami i nowo¶ciami.
+
+%package devel
+Summary:     headers 
+Summary(de): Headers und statische Libraries 
+Summary(fr): en-têtes et bibliothèques statiques
+Summary(tr): baþlýk dosyalarý ve statik kitaplýklar
+Summary(pl): Pliki nag³ówkowe
+Group:       Development/Libraries
+Requires:    %{name} = %{version}
+
+%description devel
+The header files and static libraries are only needed for development
+of programs using the PNG library.
+
+%description -l pl devel
+W pakiecie tym znajduj± siê pliki nag³ówkowe, przeznaczone dla programistów 
+u¿ywaj±cych bibliotek PNG.
+
+%description -l de devel
+Die Header-Dateien und statischen Libraries werden nur zur Entwicklung
+von Programmen mit der PNG-Library benötigt.
+
 %description -l de
 Die PNG-Library ist eine Sammlung von Routinen zum Erstellen und Bearbeiten
 von Grafiken im PNG-Format. Das PNG-Format wurde als Ersatz für GIF
 entwickelt und enthält viele Verbesserungen und Erweiterungen.
+
+%description -l fr devel
+Fichiers d'en-tete et les librairies qui sont requis seulement pour
+le développement avec la librairie PNG.
 
 %description -l fr
 La librairie PNG est un ensemble de routines utilisées pour créer et 
@@ -32,116 +59,84 @@ manipuler des fichiers graphiques au format PNG. Le format PNG a été
 élaboré pour remplacer le GIF, avec de nombreuses améliorations et
 extensions.
 
-%description -l tr
-PNG kitaplýðý, PNG formatýndaki resim dosyalarýný iþlemeye yönelik yordamlarý
-içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ bir resim formatýdýr.
-
-%package devel
-Summary:     header files an documentation for PNG library
-Summary(pl): Pliki nag³owkowe i dokumentacja do biblioteki PNG
-Group:       Development/Libraries
-Serial:      1
-Requires:    %{name} = %{version}
-
-%description devel
-The header files and static libraries are only needed for development
-of programs using the PNG library.
-
-%description -l de devel
-Die Header-Dateien und statischen Libraries werden nur zur Entwicklung
-von Programmen mit der PNG-Library benötigt.
-
-%description -l fr devel
-Fichiers d'en-tete et les librairies qui sont requis seulement pour
-le développement avec la librairie PNG.
-
 %description -l tr devel
 PNG kitaplýðýný kullanan programlar geliþtirmek için gereken kitaplýklar ve
 baþlýk dosyalarý.
 
+%description -l tr
+PNG kitaplýðý, PNG formatýndaki resim dosyalarýný iþlemeye yönelik yordamlarý
+içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ bir resim formatýdýr.
+
 %package static
-Summary:     PNG static library
-Summary(pl): Biblioteka PNG - wersja statyczna
+Summary:     static libraries
+Summary(pl): Biblioteki statyczne
 Group:       Development/Libraries
-Serial:      1
 Requires:    %{name}-devel = %{version}
 
 %description static
-The static PNG library.
+static libraries
 
 %description -l pl static
-Bibliotek PNG - wersja statyczna
+Biblioteki statyczne
 
 %prep
 %setup -q
-%ifos Linux
-ln -sf scripts/makefile.lnx Makefile
-%endif
-%patch0 -p1
-
+ln -s scripts/makefile.lnx ./Makefile
+%patch -p1 
 
 %build
-make
+make \
+	prefix=/usr \
+	OPT="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/usr/man/man{3,5}
+install -d $RPM_BUILD_ROOT/usr/lib
 
-make install prefix=$RPM_BUILD_ROOT/usr
-install *.3 $RPM_BUILD_ROOT/usr/man/man3
-install *.5 $RPM_BUILD_ROOT/usr/man/man5
+make prefix=$RPM_BUILD_ROOT/usr/X11R6 \
+INCPATH=$RPM_BUILD_ROOT/usr/include install
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+mv $RPM_BUILD_ROOT/usr/X11R6/lib/*.a $RPM_BUILD_ROOT/usr/lib
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man{3,5}/*
+%post -p /sbin/ldconfig
 
-%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
-%attr(755, root, root) /usr/lib/lib*.so.*.*
-%attr(644, root,  man) /usr/man/man5/*
+%defattr(644,root,root,755)
+%lang(en) %doc *.txt 
+
+%attr(755,root,root) /usr/X11R6/lib/*.so.*
 
 %files devel
-%defattr(644, root, root, 755)
-%doc *.txt example.c
+%defattr(644,root,root,755)
+%lang(en) %doc ANNOUNCE CHANGES KNOWNBUG README TODO
+
+%attr(755,root,root) /usr/X11R6/lib/*.so
 /usr/include/*
-/usr/lib/lib*.so
-%attr(644, root,  man) /usr/man/man3/*
 
 %files static
-%attr(644, root, root) /usr/lib/lib*.a
+%attr(644,root,root) /usr/lib/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Dec 29 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0.1-7]
-- added gzipping man pages,
-- added man pages level 5,
-- downgrade to 1.0.1 (added Serial).
+* Sun Nov 15 1998 Marcin Korzonek <mkorz@shadow.eu.org>
+[1.0.2-1d]
+- added some docs files,
+- added %%lang macros.
 
-* Sat Aug  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0.2-1]
+* Thu Jul 16 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+[1.0.1-5d]
+- build against glibc-2.1,
 - added pl translation,
-- added -q %setup parameter,
-- added using %%{name} and %%{version} macros in Buildroot,
-- added %clean section,
-- added package icon,
-- added URL,
-- added stripping sharebd lib,
-- added "%ifos Linux .. %endif" around making sym link to proper Makefile,
-- Buildroot changed to /tmp/%%{name}-%%{version}-root,
-- added man pages to devel,
-- added static subpackage,
-- Rquires in devel changed to "%%{name} %%{version}"
-- changed permission on shared libs to 755 (now ldd output on this files is
-  correct),
-- added %defattr and %attr macros in %files (allows building package from
-  non-root account).
+- moved %changelog at the end of spec,
+- changed permisions of *.so libs to 755,
+- addes static subpackage.
 
 * Thu May 07 1998 Prospector System <bugs@redhat.com>
+
 - translations modified for de, fr, tr
 
 * Thu Apr 30 1998 Cristian Gafton <gafton@redhat.com>
