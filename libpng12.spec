@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.5
-Release:	1
+Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -17,6 +17,7 @@ Patch1:		%{name}-badchunks.patch
 Patch2:		%{name}-opt.patch
 Patch3:		%{name}-revert.patch
 Patch4:		%{name}-16bit-overflow.patch
+Patch5:		%{name}-norpath.patch
 Provides:	libpng.so.3
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	zlib-devel
@@ -102,7 +103,6 @@ kitaplýklar ve baþlýk dosyalarý.
 %package static
 Summary:	Static PNG libraries
 Summary(de):	Statischen PNG Libraries
-Summary(es):	Static libraries for libpng development
 Summary(pl):	Biblioteki statyczne PNG
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libpng
 Group:		Development/Libraries
@@ -113,9 +113,6 @@ Static PNG libraries.
 
 %description static -l de
 Statischen PNG Libraries.
-
-%description static -l es
-Static libraries for libpng development.
 
 %description static -l pl
 Biblioteki statyczne PNG.
@@ -129,11 +126,11 @@ Summary(pl):	Narzêdzia do plików PNG
 Group:		Applications/Graphics
 
 %description progs
-This package contains utility programs to convert png files to and
-from pnm files.
+This package contains utility programs to convert PNG files to and
+from PNM files.
 
 %description progs -l pl
-Narzêdzia do konwersji plików png z lub do plików pnm.
+Narzêdzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
 %setup -q
@@ -142,6 +139,7 @@ Narzêdzia do konwersji plików png z lub do plików pnm.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
