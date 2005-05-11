@@ -21,8 +21,9 @@ Patch4:		%{name}-norpath.patch
 Patch5:		%{name}-libdirfix.patch
 Patch6:		%{name}-gcc-pch.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
+BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
-%ifarch amd64 ia64 ppc64 s390x sparc64
+%ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libpng.so.3()(64bit)
 %else
 Provides:	libpng.so.3
