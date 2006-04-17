@@ -6,8 +6,8 @@
  
 -LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng12 -lz -lm
 -LDFLAGS_A=-L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) libpng.a -lz -lm
-+LDFLAGS=-L. -L$(ZLIBLIB) -lpng12 -lz -lm
-+LDFLAGS_A=-L$(ZLIBLIB) libpng.a -lz -lm
++LDFLAGS=-L. -lpng12 -lz -lm
++LDFLAGS_A=libpng.a -lz -lm
  
  
  INCPATH=$(prefix)/include
@@ -20,12 +20,11 @@
  	echo libs=\"-lpng12 -lz -lm\"; \
  	cat scripts/libpng-config-body.in ) > libpng-config
  	chmod +x libpng-config
-@@ -239,7 +239,7 @@
+@@ -239,7 +239,6 @@
  test-installed:
  	$(CC) -I$(ZLIBINC) \
  	   `$(BINPATH)/$(LIBNAME)-config --cflags` pngtest.c \
 -	   -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) \
-+	   -L$(ZLIBLIB) \
  	   -o pngtesti `$(BINPATH)/$(LIBNAME)-config --ldflags`
  	./pngtesti pngtest.png
  
@@ -37,8 +36,8 @@
  
 -LDFLAGS=-L. -Wl,-rpath,. -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) -lpng12 -lz -lm
 -LDFLAGS_A=-L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) libpng.a -lz -lm
-+LDFLAGS=-L. -L$(ZLIBLIB) -lpng12 -lz -lm
-+LDFLAGS_A=-L$(ZLIBLIB) libpng.a -lz -lm
++LDFLAGS=-L. -lpng12 -lz -lm
++LDFLAGS_A=libpng.a -lz -lm
  
  INCPATH=$(prefix)/include
  LIBPATH=$(exec_prefix)/lib
@@ -51,12 +50,11 @@
  	echo libs=\"-lpng12 -lz -lm\"; \
  	cat scripts/libpng-config-body.in ) > libpng-config
  	chmod +x libpng-config
-@@ -207,7 +207,7 @@
+@@ -207,7 +207,6 @@
  test-installed:
  	$(CC) -I$(ZLIBINC) \
  	   `$(BINPATH)/$(LIBNAME)-config --cflags` pngtest.c \
 -	   -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) \
-+	   -L$(ZLIBLIB) \
  	   -o pngtesti `$(BINPATH)/$(LIBNAME)-config --ldflags`
  	./pngtesti pngtest.png
  
