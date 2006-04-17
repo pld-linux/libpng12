@@ -1,6 +1,6 @@
---- libpng-1.2.5/scripts/makefile.gcmmx.orig	2003-04-21 02:18:40.000000000 +0200
-+++ libpng-1.2.5/scripts/makefile.gcmmx	2003-04-21 02:32:00.000000000 +0200
-@@ -55,8 +55,8 @@
+--- libpng-1.2.9/scripts/makefile.gcmmx.orig	2006-04-17 01:12:53.813611500 +0200
++++ libpng-1.2.9/scripts/makefile.gcmmx	2006-04-17 01:13:47.872990000 +0200
+@@ -72,8 +72,8 @@
  #	-m486 -malign-double -ffast-math \
  #	$(ALIGN) -funroll-loops -funroll-all-loops -fomit-frame-pointer 
  
@@ -9,9 +9,9 @@
 +LDFLAGS=-L. -L$(ZLIBLIB) -lpng12 -lz -lm
 +LDFLAGS_A=-L$(ZLIBLIB) libpng.a -lz -lm
  
- RANLIB=ranlib
- #RANLIB=echo
-@@ -107,7 +107,7 @@
+ 
+ INCPATH=$(prefix)/include
+@@ -122,7 +122,7 @@
  	echo I_opts=\"-I$(INCPATH)/$(LIBNAME)\"; \
  	echo cppflags=\"-DPNG_THREAD_UNSAFE_OK -DPNG_USE_PNGGCCRD\"; \
  	echo L_opts=\"-L$(LIBPATH)\"; \
@@ -20,18 +20,18 @@
  	echo libs=\"-lpng12 -lz -lm\"; \
  	cat scripts/libpng-config-body.in ) > libpng-config
  	chmod +x libpng-config
-@@ -213,7 +213,7 @@
+@@ -239,7 +239,7 @@
  test-installed:
  	$(CC) -I$(ZLIBINC) \
- 	   `$(BINPATH)/libpng12-config --cflags` pngtest.c \
+ 	   `$(BINPATH)/$(LIBNAME)-config --cflags` pngtest.c \
 -	   -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) \
 +	   -L$(ZLIBLIB) \
- 	   -o pngtesti `$(BINPATH)/libpng12-config --ldflags`
+ 	   -o pngtesti `$(BINPATH)/$(LIBNAME)-config --ldflags`
  	./pngtesti pngtest.png
  
---- libpng-1.2.5/scripts/makefile.linux.orig	2003-04-21 02:18:40.000000000 +0200
-+++ libpng-1.2.5/scripts/makefile.linux	2003-04-21 02:32:24.000000000 +0200
-@@ -34,8 +34,8 @@
+--- libpng-1.2.9/scripts/makefile.linux.orig	2006-04-17 01:12:53.813611500 +0200
++++ libpng-1.2.9/scripts/makefile.linux	2006-04-17 01:14:15.322705500 +0200
+@@ -50,8 +50,8 @@
  CFLAGS=-I$(ZLIBINC) -Wall $(OPT_FLAGS) -funroll-loops \
  	$(ALIGN) # $(WARNMORE) -g -DPNG_DEBUG=5
  
@@ -40,9 +40,9 @@
 +LDFLAGS=-L. -L$(ZLIBLIB) -lpng12 -lz -lm
 +LDFLAGS_A=-L$(ZLIBLIB) libpng.a -lz -lm
  
- RANLIB=ranlib
- #RANLIB=echo
-@@ -85,7 +85,7 @@
+ INCPATH=$(prefix)/include
+ LIBPATH=$(exec_prefix)/lib
+@@ -98,7 +98,7 @@
  	echo prefix=\"$(prefix)\"; \
  	echo I_opts=\"-I$(INCPATH)/$(LIBNAME)\"; \
  	echo L_opts=\"-L$(LIBPATH)\"; \
@@ -51,12 +51,12 @@
  	echo libs=\"-lpng12 -lz -lm\"; \
  	cat scripts/libpng-config-body.in ) > libpng-config
  	chmod +x libpng-config
-@@ -185,7 +185,7 @@
+@@ -207,7 +207,7 @@
  test-installed:
  	$(CC) -I$(ZLIBINC) \
- 	   `$(BINPATH)/libpng12-config --cflags` pngtest.c \
+ 	   `$(BINPATH)/$(LIBNAME)-config --cflags` pngtest.c \
 -	   -L$(ZLIBLIB) -Wl,-rpath,$(ZLIBLIB) \
 +	   -L$(ZLIBLIB) \
- 	   -o pngtesti `$(BINPATH)/libpng12-config --ldflags`
+ 	   -o pngtesti `$(BINPATH)/$(LIBNAME)-config --ldflags`
  	./pngtesti pngtest.png
  

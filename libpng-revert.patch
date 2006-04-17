@@ -1,66 +1,80 @@
-diff -Nur libpng-1.2.5.orig/scripts/makefile.gcmmx libpng-1.2.5/scripts/makefile.gcmmx
---- libpng-1.2.5.orig/scripts/makefile.gcmmx	Sat Oct 12 01:00:37 2002
-+++ libpng-1.2.5/scripts/makefile.gcmmx	Sat Oct 12 01:05:56 2002
-@@ -125,14 +125,12 @@
- 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ)
+--- libpng-1.2.9/scripts/makefile.gcmmx.orig	2006-04-17 00:49:57.995628250 +0200
++++ libpng-1.2.9/scripts/makefile.gcmmx	2006-04-17 01:12:02.910430250 +0200
+@@ -24,8 +24,8 @@
+ LIBSOMAJ=$(LIBNAME).so.$(PNGMAJ)
+ LIBSOVER=$(LIBNAME).so.$(PNGVER)
+ OLDSO=libpng.so
+-OLDSOMAJ=libpng.so.0
+-OLDSOVER=libpng.so.0.$(PNGMIN)
++OLDSOMAJ=libpng.so.3
++OLDSOVER=libpng.so.3.$(PNGMIN)
  
- $(LIBNAME).so.$(PNGVER): $(OBJSDLL)
--	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) \
-+	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) -lz -lm \
- 	-o $(LIBNAME).so.$(PNGVER) \
- 	$(OBJSDLL)
- 
--libpng.so.3.$(PNGMIN): $(OBJSDLL)
--	$(CC) -shared -Wl,-soname,libpng.so.3 \
--	-o libpng.so.3.$(PNGMIN) \
+ # Utilities:
+ CC = gcc
+@@ -142,12 +142,10 @@
+ $(LIBSOVER): $(OBJSDLL)
+ 	$(CC) -shared -Wl,-soname,$(LIBSOMAJ) \
+ 	-o $(LIBSOVER) \
 -	$(OBJSDLL)
-+libpng.so.3.$(PNGMIN): $(LIBNAME).so.$(PNGVER)
-+	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN)
++	$(OBJSDLL) -lz -lm
  
- pngtest: pngtest.o $(LIBNAME).so
- 	$(CC) -o pngtest $(CFLAGS) pngtest.o $(LDFLAGS)
-@@ -174,10 +172,9 @@
- 	-@/bin/rm -f $(DL)/libpng.so.3
- 	-@/bin/rm -f $(DL)/libpng.so.3.$(PNGMIN)*
- 	cp $(LIBNAME).so.$(PNGVER) $(DL)
--	cp libpng.so.3.$(PNGMIN) $(DL)
- 	chmod 755 $(DL)/$(LIBNAME).so.$(PNGVER)
--	chmod 755 $(DL)/libpng.so.3.$(PNGMIN)
- 	(cd $(DL); \
-+	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN); \
- 	ln -sf libpng.so.3.$(PNGMIN) libpng.so.3; \
- 	ln -sf libpng.so.3 libpng.so; \
- 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ); \
-diff -Nur libpng-1.2.5.orig/scripts/makefile.linux libpng-1.2.5/scripts/makefile.linux
---- libpng-1.2.5.orig/scripts/makefile.linux	Sat Oct 12 01:00:37 2002
-+++ libpng-1.2.5/scripts/makefile.linux	Sat Oct 12 01:05:55 2002
-@@ -97,14 +97,12 @@
- 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ)
- 
- $(LIBNAME).so.$(PNGVER): $(OBJSDLL)
--	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) \
-+	$(CC) -shared -Wl,-soname,$(LIBNAME).so.$(PNGMAJ) -lz -lm \
- 	-o $(LIBNAME).so.$(PNGVER) \
- 	$(OBJSDLL)
- 
--libpng.so.3.$(PNGMIN): $(OBJSDLL)
--	$(CC) -shared -Wl,-soname,libpng.so.3 \
--	-o libpng.so.3.$(PNGMIN) \
+-$(OLDSOVER): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,$(OLDSOMAJ) \
+-	-o $(OLDSOVER) \
 -	$(OBJSDLL)
-+libpng.so.3.$(PNGMIN): $(LIBNAME).so.$(PNGVER)
-+	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN)
++$(OLDSOVER): $(LIBSOVER)
++	$(LN_SF) $(LIBSOVER) $(OLDSOVER)
  
- pngtest: pngtest.o $(LIBNAME).so
+ pngtest: pngtest.o $(LIBSO)
  	$(CC) -o pngtest $(CFLAGS) pngtest.o $(LDFLAGS)
-@@ -146,10 +144,9 @@
- 	-@/bin/rm -f $(DL)/libpng.so.3
- 	-@/bin/rm -f $(DL)/libpng.so.3.$(PNGMIN)*
- 	cp $(LIBNAME).so.$(PNGVER) $(DL)
--	cp libpng.so.3.$(PNGMIN) $(DL)
- 	chmod 755 $(DL)/$(LIBNAME).so.$(PNGVER)
--	chmod 755 $(DL)/libpng.so.3.$(PNGMIN)
+@@ -190,9 +188,8 @@
+ 	-@$(RM_F) $(DL)/$(OLDSOMAJ)
+ 	-@$(RM_F) $(DL)/$(OLDSOVER)*
+ 	cp $(LIBSOVER) $(DL)
+-	cp $(OLDSOVER) $(DL)
++	$(LN_SF) $(LIBSOVER) $(DL)/$(OLDSOVER)
+ 	chmod 755 $(DL)/$(LIBSOVER)
+-	chmod 755 $(DL)/$(OLDSOVER)
  	(cd $(DL); \
-+	ln -sf $(LIBNAME).so.$(PNGVER) libpng.so.3.$(PNGMIN); \
- 	ln -sf libpng.so.3.$(PNGMIN) libpng.so.3; \
- 	ln -sf libpng.so.3 libpng.so; \
- 	ln -sf $(LIBNAME).so.$(PNGVER) $(LIBNAME).so.$(PNGMAJ); \
+ 	$(LN_SF) $(OLDSOVER) $(OLDSOMAJ); \
+ 	$(LN_SF) $(OLDSOMAJ) $(OLDSO); \
+--- libpng-1.2.9/scripts/makefile.linux.orig	2006-04-17 00:49:57.999628500 +0200
++++ libpng-1.2.9/scripts/makefile.linux	2006-04-17 01:12:01.098317000 +0200
+@@ -14,8 +14,8 @@
+ LIBSOMAJ=$(LIBNAME).so.$(PNGMAJ)
+ LIBSOVER=$(LIBNAME).so.$(PNGVER)
+ OLDSO=libpng.so
+-OLDSOMAJ=libpng.so.0
+-OLDSOVER=libpng.so.0.$(PNGMIN)
++OLDSOMAJ=libpng.so.3
++OLDSOVER=libpng.so.3.$(PNGMIN)
+ 
+ # Utilities:
+ AR_RC=ar rc
+@@ -110,12 +110,10 @@
+ 	$(LN_SF) $(LIBSOVER) $(LIBSOMAJ)
+ 
+ $(LIBSOVER): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,$(LIBSOMAJ) -o $(LIBSOVER) $(OBJSDLL)
++	$(CC) -shared -Wl,-soname,$(LIBSOMAJ) -o $(LIBSOVER) $(OBJSDLL) -lz -m
+ 
+-$(OLDSOVER): $(OBJSDLL)
+-	$(CC) -shared -Wl,-soname,$(OLDSOMAJ) \
+-	-o $(OLDSOVER) \
+-	$(OBJSDLL)
++$(OLDSOVER): $(LIBSOVER)
++	$(LN_SF) $(LIBSOVER) $(OLDSOVER)
+ 
+ pngtest: pngtest.o $(LIBSO)
+ 	$(CC) -o pngtest $(CFLAGS) pngtest.o $(LDFLAGS)
+@@ -158,9 +156,8 @@
+ 	-@$(RM_F) $(DL)/$(OLDSOMAJ)
+ 	-@$(RM_F) $(DL)/$(OLDSOVER)*
+ 	cp $(LIBSOVER) $(DL)
+-	cp $(OLDSOVER) $(DL)
++	$(LN_SF) $(LIBSOVER) $(DL)/$(OLDSOVER)
+ 	chmod 755 $(DL)/$(LIBSOVER)
+-	chmod 755 $(DL)/$(OLDSOVER)
+ 	(cd $(DL); \
+ 	$(LN_SF) $(OLDSOVER) $(OLDSOMAJ); \
+ 	$(LN_SF) $(OLDSOMAJ) $(OLDSO); \
