@@ -56,7 +56,7 @@
  
  $(LIBSOVER): $(OBJSDLL)
 -	$(CC) -shared -Wl,-soname,$(LIBSOMAJ) -o $(LIBSOVER) $(OBJSDLL)
-+	$(CC) -shared -Wl,-soname,$(LIBSOMAJ) -o $(LIBSOVER) $(OBJSDLL) -lz -m
++	$(CC) -shared -Wl,-soname,$(LIBSOMAJ) -o $(LIBSOVER) $(OBJSDLL) -lz -lm
  
 -$(OLDSOVER): $(OBJSDLL)
 -	$(CC) -shared -Wl,-soname,$(OLDSOMAJ) \
