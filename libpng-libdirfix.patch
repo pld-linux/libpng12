@@ -1,14 +1,5 @@
 --- libpng-1.2.9/scripts/makefile.linux.libdirfix	2003-02-24 19:32:51.000000000 -0500
 +++ libpng-1.2.9/scripts/makefile.linux	2003-02-24 19:33:26.000000000 -0500
-@@ -29,7 +29,7 @@
- # libpng12/png.h and libpng12/pngconf.h
- # Prefix must be a full pathname.
- prefix=/usr/local
--exec_prefix=$prefix
-+exec_prefix=$(prefix)
- 
- # Where the zlib library and include files are located.
- #ZLIBLIB=/usr/local/lib
 @@ -60,7 +60,7 @@
  	$(RANLIB) $@
  
@@ -20,15 +11,6 @@
  	ln -sf $(LIBNAME).so.$(PNGMAJ) $(LIBNAME).so
 --- libpng-1.2.9/scripts/makefile.gcmmx.libdirfix	2003-02-24 19:32:51.000000000 -0500
 +++ libpng-1.2.9/scripts/makefile.gcmmx	2003-02-24 19:33:26.000000000 -0500
-@@ -40,7 +40,7 @@
- # libpng12/png.h and libpng12/pngconf.h
- # Prefix must be a full pathname.
- prefix=/usr/local
--exec_prefix=$prefix
-+exec_prefix=$(prefix)
- 
- # Where the zlib library and include files are located.
- #ZLIBLIB=/usr/local/lib
 @@ -60,7 +60,7 @@
  	$(RANLIB) $@
  

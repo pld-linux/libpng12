@@ -6,13 +6,13 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.9
+Version:	1.2.10
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5:	667fa75c8cbb6875f3d1c2b4bef35081
+# Source0-md5:	4f23eebd59ddd01a8f91ff8c823dd7d6
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-revert.patch
