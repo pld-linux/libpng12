@@ -20,3 +20,15 @@ diff -urN libpng-1.2.1.org/contrib/pngminus/makefile.std libpng-1.2.1/contrib/pn
  C=.c
  O=.o
  L=.a
+--- libpng-1.2.10/contrib/pngminus/makefile.std.orig	2006-05-01 17:54:46.000000000 +0200
++++ libpng-1.2.10/contrib/pngminus/makefile.std	2006-05-01 17:56:33.000000000 +0200
+@@ -33,8 +33,7 @@
+ 
+ # dependencies
+ 
+-#all: png2pnm$(E) pnm2png$(E)
+-all: png2pnm$(E) pnm2png$(E) png2pnm-static$(E) pnm2png-static$(E)
++all: png2pnm$(E) pnm2png$(E)
+ 
+ png2pnm$(O): png2pnm$(C)
+ 	$(CC) -c $(CFLAGS) png2pnm$(C)
