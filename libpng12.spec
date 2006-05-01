@@ -154,11 +154,15 @@ ln -sf scripts/makefile.linux ./Makefile
 %endif
 
 %build
+%configure \
+	--with-libpng-compat
+
 %{__make} \
 	prefix=%{_prefix} \
 	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
 	OPT_FLAGS="%{rpmcflags}"
+
 %{__make} -C contrib/pngminus -f makefile.std \
 	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
@@ -187,13 +191,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ANNOUNCE CHANGES KNOWNBUG README LICENSE
-%attr(755,root,root) %{_libdir}/*.so.*.*
-%{_libdir}/libpng.so.3
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
+%{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_pkgconfigdir}/*
 %{_includedir}/*
