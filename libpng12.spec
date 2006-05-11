@@ -191,14 +191,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ANNOUNCE CHANGES KNOWNBUG README LICENSE
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libpng*.so.*.*.*
+# alternative soname (symlink in PLD, so must be packaged)
+%attr(755,root,root) %{_libdir}/libpng.so.3
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
-%{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libpng*.so
+%{_libdir}/libpng*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
@@ -206,7 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libpng*.a
 
 %files progs
 %defattr(644,root,root,755)
