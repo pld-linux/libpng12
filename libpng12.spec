@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.10
-Release:	1
+Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -19,6 +19,7 @@ Patch2:		%{name}-revert.patch
 Patch3:		%{name}-norpath.patch
 Patch4:		%{name}-libdirfix.patch
 Patch5:		%{name}-gcc-pch.patch
+Patch6:		%{name}-export_old.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
@@ -146,6 +147,7 @@ Narzêdzia do konwersji plików PNG z lub do plików PNM.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
