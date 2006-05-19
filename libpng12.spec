@@ -7,7 +7,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.10
-Release:	2
+Release:	3
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -156,14 +156,15 @@ ln -sf scripts/makefile.linux ./Makefile
 %endif
 
 %build
-%configure \
-	--with-libpng-compat
-
 %{__make} \
 	prefix=%{_prefix} \
 	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
+%ifarch %{x8664}
+	OPT_FLAGS="%{rpmcflags} -DPNG_NO_MMX_CODE"
+%else
 	OPT_FLAGS="%{rpmcflags}"
+%endif
 
 %{__make} -C contrib/pngminus -f makefile.std \
 	LIBPATH=%{_libdir} \
@@ -202,7 +203,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
 %attr(755,root,root) %{_libdir}/libpng*.so
-%{_libdir}/libpng*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
