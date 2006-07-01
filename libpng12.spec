@@ -1,3 +1,4 @@
+# NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
 Summary:	PNG library
 Summary(de):	PNG-Library
 Summary(es):	Biblioteca PNG
