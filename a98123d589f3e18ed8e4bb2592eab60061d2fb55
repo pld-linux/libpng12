@@ -1,0 +1,4 @@
+- opt patch is back! (updated)
+- try to clean summaries/descriptions (not complete - I don't know fr,tr)
+  WARNING: SONAME has changed!
+  some binary-only packages (e.g. opera) require libpng 1.0.x
