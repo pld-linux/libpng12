@@ -1,0 +1,2 @@
+- moved png.5 manpage to devel subpkg, to allow coexisting with libpng1.0x
+- release 2
