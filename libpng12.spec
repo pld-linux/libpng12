@@ -14,6 +14,8 @@ License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
 # Source0-md5:	2287cfaad53a714acdf6eb75a7c1d15f
+Source1:	%{name}.la
+Source2:	%{name}12.la
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -186,6 +188,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}} \
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
 install example.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+install %SOURCE1 $RPM_BUILD_ROOT%{_libdir}
+install %SOURCE2 $RPM_BUILD_ROOT%{_libdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -204,6 +209,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
 %attr(755,root,root) %{_libdir}/libpng*.so
+%attr(755,root,root) %{_libdir}/libpng*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
