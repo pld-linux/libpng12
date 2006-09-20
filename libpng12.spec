@@ -204,7 +204,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
 %attr(755,root,root) %{_libdir}/libpng*.so
-%attr(755,root,root) %{_libdir}/libpng*.la
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
