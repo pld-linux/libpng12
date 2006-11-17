@@ -1,3 +1,4 @@
+# NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
 Summary:	PNG library
 Summary(de):	PNG-Library
 Summary(es):	Biblioteca PNG
@@ -6,23 +7,24 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.8
+Version:	1.2.13
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5:	00cea4539bea4bd34cbf8b82ff9589cd
+# Source0-md5:	e9ed9879008fa978d4c07cf4afd2bfcf
 Patch0:		%{name}-pngminus.patch
-Patch1:		%{name}-badchunks.patch
-Patch2:		%{name}-opt.patch
-Patch3:		%{name}-revert.patch
-Patch4:		%{name}-norpath.patch
-Patch5:		%{name}-libdirfix.patch
-Patch6:		%{name}-gcc-pch.patch
+Patch1:		%{name}-opt.patch
+Patch2:		%{name}-norpath.patch
+Patch3:		%{name}-libdirfix.patch
+Patch4:		%{name}-gcc-pch.patch
+Patch5:		%{name}-export_old.patch
+Patch6:		%{name}-revert.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
+BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
-%ifarch amd64 ia64 ppc64 s390x sparc64
+%ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libpng.so.3()(64bit)
 %else
 Provides:	libpng.so.3
@@ -159,7 +161,12 @@ ln -sf scripts/makefile.linux ./Makefile
 	prefix=%{_prefix} \
 	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
+%ifarch %{x8664}
+	OPT_FLAGS="%{rpmcflags} -DPNG_NO_MMX_CODE"
+%else
 	OPT_FLAGS="%{rpmcflags}"
+%endif
+
 %{__make} -C contrib/pngminus -f makefile.std \
 	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
@@ -188,14 +195,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ANNOUNCE CHANGES KNOWNBUG README LICENSE
-%attr(755,root,root) %{_libdir}/*.so.*.*
-%{_libdir}/libpng.so.3
+%attr(755,root,root) %{_libdir}/libpng*.so.*.*.*
+# alternative soname (symlink in PLD, so must be packaged)
+%attr(755,root,root) %{_libdir}/libpng.so.3
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libpng*.so
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
@@ -203,7 +211,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libpng*.a
 
 %files progs
 %defattr(644,root,root,755)
