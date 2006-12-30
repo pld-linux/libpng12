@@ -8,13 +8,13 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.15
-%define		_pre	rc3
+%define		_pre	rc5
 Release:	0.%{_pre}.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_pre}.tar.bz2
-# Source0-md5:	d221ec38fb57e6ff8c4d4f4e539a6171
+# Source0-md5:	7cec2a68909893001716aebd787003cb
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
