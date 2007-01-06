@@ -8,13 +8,12 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.15
-%define		_pre	rc3
-Release:	0.%{_pre}.1
+Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_pre}.tar.bz2
-# Source0-md5:	d221ec38fb57e6ff8c4d4f4e539a6171
+Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
+# Source0-md5:	184a3032a04d68827547cc75c6afbb3d
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -142,7 +141,7 @@ from PNM files.
 Narzêdzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
-%setup -q -n %{name}-%{version}%{_pre}
+%setup -q -n %{name}-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
