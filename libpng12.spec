@@ -141,7 +141,7 @@ from PNM files.
 Narzêdzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
