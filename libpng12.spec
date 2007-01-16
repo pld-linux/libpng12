@@ -8,7 +8,7 @@ Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
 Version:	1.2.15
-Release:	2
+Release:	2.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -198,13 +198,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpng*.so.*.*.*
 # alternative soname (symlink in PLD, so must be packaged)
 %attr(755,root,root) %{_libdir}/libpng.so.3
+%attr(755,root,root) %{_libdir}/libpng*.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.txt
 %attr(755,root,root) %{_bindir}/libpng*-config
 %attr(755,root,root) %{_libdir}/libpng*.so
-%attr(755,root,root) %{_libdir}/libpng*.so.0
 %{_pkgconfigdir}/*
 %{_includedir}/*
 %{_mandir}/man?/*
