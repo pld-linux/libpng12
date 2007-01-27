@@ -1,4 +1,5 @@
 # NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
+%define	_rc	rc1
 Summary:	PNG library
 Summary(de):	PNG-Library
 Summary(es):	Biblioteca PNG
@@ -7,14 +8,13 @@ Summary(pl):	Biblioteka PNG
 Summary(pt_BR):	Biblioteca PNG
 Summary(tr):	PNG kitaplýðý
 Name:		libpng
-Version:	1.2.15
-%define		_pre	rc3
-Release:	0.%{_pre}.1
+Version:	1.2.16
+Release:	0.%{_rc}.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_pre}.tar.bz2
-# Source0-md5:	d221ec38fb57e6ff8c4d4f4e539a6171
+Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_rc}.tar.bz2
+# Source0-md5:	10c000f277c40b04ab17346fbb9cf07d
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -142,7 +142,7 @@ from PNM files.
 Narzêdzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
-%setup -q -n %{name}-%{version}%{_pre}
+%setup -q -n %{name}-%{version}%{_rc}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -199,6 +199,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpng*.so.*.*.*
 # alternative soname (symlink in PLD, so must be packaged)
 %attr(755,root,root) %{_libdir}/libpng.so.3
+%attr(755,root,root) %{_libdir}/libpng*.so.0
 
 %files devel
 %defattr(644,root,root,755)
