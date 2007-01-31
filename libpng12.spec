@@ -195,24 +195,31 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ANNOUNCE CHANGES KNOWNBUG README LICENSE
-%attr(755,root,root) %{_libdir}/libpng*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libpng12.so.*.*.*
+%attr(755,root,root) %{_libdir}/libpng.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpng12.so.0
 # alternative soname (symlink in PLD, so must be packaged)
 %attr(755,root,root) %{_libdir}/libpng.so.3
-%attr(755,root,root) %{_libdir}/libpng*.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc *.txt
-%attr(755,root,root) %{_bindir}/libpng*-config
-%attr(755,root,root) %{_libdir}/libpng*.so
-%{_pkgconfigdir}/*
-%{_includedir}/*
+%attr(755,root,root) %{_bindir}/libpng12-config
+%attr(755,root,root) %{_bindir}/libpng-config
+%attr(755,root,root) %{_libdir}/libpng12.so
+%attr(755,root,root) %{_libdir}/libpng.so
+%{_pkgconfigdir}/libpng12.pc
+%{_pkgconfigdir}/libpng.pc
+%{_includedir}/libpng12
+%{_includedir}/libpng
+%{_includedir}/png*.h
 %{_mandir}/man?/*
 %{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libpng*.a
+%{_libdir}/libpng12.a
+%{_libdir}/libpng.a
 
 %files progs
 %defattr(644,root,root,755)
