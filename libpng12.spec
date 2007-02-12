@@ -1,11 +1,11 @@
 # NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
 Summary:	PNG library
-Summary(de):	PNG-Library
-Summary(es):	Biblioteca PNG
-Summary(fr):	Librarie PNG
-Summary(pl):	Biblioteka PNG
-Summary(pt_BR):	Biblioteca PNG
-Summary(tr):	PNG kitaplýðý
+Summary(de.UTF-8):   PNG-Library
+Summary(es.UTF-8):   Biblioteca PNG
+Summary(fr.UTF-8):   Librarie PNG
+Summary(pl.UTF-8):   Biblioteka PNG
+Summary(pt_BR.UTF-8):   Biblioteca PNG
+Summary(tr.UTF-8):   PNG kitaplÄ±ÄŸÄ±
 Name:		libpng
 Version:	1.2.16
 Release:	1
@@ -36,45 +36,45 @@ The PNG library is a collection of routines used to create and
 manipulate PNG format graphics files. The PNG format was designed as a
 replacement for GIF, with many improvements and extensions.
 
-%description -l de
+%description -l de.UTF-8
 Die PNG-Library ist eine Sammlung von Routinen zum Erstellen und
 Bearbeiten von Grafiken im PNG-Format. Das PNG-Format wurde als Ersatz
-für GIF entwickelt und enthält viele Verbesserungen und Erweiterungen.
+fÃ¼r GIF entwickelt und enthÃ¤lt viele Verbesserungen und Erweiterungen.
 
-%description -l es
-Esta biblioteca es una colección de rutinas para crear y manipular
-archivos gráficos en el formato PNG. Este formato fue proyectado para
+%description -l es.UTF-8
+Esta biblioteca es una colecciÃ³n de rutinas para crear y manipular
+archivos grÃ¡ficos en el formato PNG. Este formato fue proyectado para
 substituir el
 
-%description -l fr
-La librairie PNG est un ensemble de routines utilisées pour créer et
-manipuler des fichiers graphiques au format PNG. Le format PNG a été
-élaboré pour remplacer le GIF, avec de nombreuses améliorations et
+%description -l fr.UTF-8
+La librairie PNG est un ensemble de routines utilisÃ©es pour crÃ©er et
+manipuler des fichiers graphiques au format PNG. Le format PNG a Ã©tÃ©
+Ã©laborÃ© pour remplacer le GIF, avec de nombreuses amÃ©liorations et
 extensions.
 
-%description -l pl
-Biblioteki PNG s± kolekcj± form u¿ywanych do tworzenia i manipulowania
-plikami w formacie graficznym PNG. Format ten zosta³ stworzony jako
-zamiennik dla formatu GIF, z wieloma rozszerzeniami i nowo¶ciami.
+%description -l pl.UTF-8
+Biblioteki PNG sÄ… kolekcjÄ… form uÅ¼ywanych do tworzenia i manipulowania
+plikami w formacie graficznym PNG. Format ten zostaÅ‚ stworzony jako
+zamiennik dla formatu GIF, z wieloma rozszerzeniami i nowoÅ›ciami.
 
-%description -l pt_BR
-Esta biblioteca é uma coleção de rotinas para criar e manipular
-arquivos gráficos no formato PNG. Este formato foi projetado para
-substituir o formato GIF, com extensões e melhorias.
+%description -l pt_BR.UTF-8
+Esta biblioteca Ã© uma coleÃ§Ã£o de rotinas para criar e manipular
+arquivos grÃ¡ficos no formato PNG. Este formato foi projetado para
+substituir o formato GIF, com extensÃµes e melhorias.
 
-%description -l tr
-PNG kitaplýðý, PNG formatýndaki resim dosyalarýný iþlemeye yönelik
-yordamlarý içerir. PNG, GIF formatýnýn yerini almak üzere tasarlanmýþ
-bir resim formatýdýr.
+%description -l tr.UTF-8
+PNG kitaplÄ±ÄŸÄ±, PNG formatÄ±ndaki resim dosyalarÄ±nÄ± iÅŸlemeye yÃ¶nelik
+yordamlarÄ± iÃ§erir. PNG, GIF formatÄ±nÄ±n yerini almak Ã¼zere tasarlanmÄ±ÅŸ
+bir resim formatÄ±dÄ±r.
 
 %package devel
 Summary:	Header files for libpng
-Summary(de):	libpng Headers
-Summary(es):	Archivos de inclusión y bibliotecas estáticas
-Summary(fr):	en-têtes et bibliothèques statiques
-Summary(pl):	Pliki nag³ówkowe libpng
-Summary(pt_BR):	Arquivos de inclusão e bibliotecas estáticas
-Summary(tr):	baþlýk dosyalarý ve statik kitaplýklar
+Summary(de.UTF-8):   libpng Headers
+Summary(es.UTF-8):   Archivos de inclusiÃ³n y bibliotecas estÃ¡ticas
+Summary(fr.UTF-8):   en-tÃªtes et bibliothÃ¨ques statiques
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe libpng
+Summary(pt_BR.UTF-8):   Arquivos de inclusÃ£o e bibliotecas estÃ¡ticas
+Summary(tr.UTF-8):   baÅŸlÄ±k dosyalarÄ± ve statik kitaplÄ±klar
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
@@ -84,61 +84,61 @@ Conflicts:	libpng < 1.0.15
 The header files are only needed for development of programs using the
 PNG library.
 
-%description devel -l de
+%description devel -l de.UTF-8
 Die Header-Dateien werden nur zur Entwicklung von Programmen mit der
-PNG-Library benötigt.
+PNG-Library benÃ¶tigt.
 
-%description devel -l es
-Archivos de inclusión y bibliotecas estáticas que son necesarios
+%description devel -l es.UTF-8
+Archivos de inclusiÃ³n y bibliotecas estÃ¡ticas que son necesarios
 solamente para el desarrollo de programas que usan la biblioteca PNG.
 
-%description devel -l fr
+%description devel -l fr.UTF-8
 Fichiers d'en-tete et les librairies qui sont requis seulement pour le
-développement avec la librairie PNG.
+dÃ©veloppement avec la librairie PNG.
 
-%description devel -l pl
-W pakiecie tym znajduj± siê pliki nag³ówkowe, przeznaczone dla
-programistów u¿ywaj±cych bibliotek PNG.
+%description devel -l pl.UTF-8
+W pakiecie tym znajdujÄ… siÄ™ pliki nagÅ‚Ã³wkowe, przeznaczone dla
+programistÃ³w uÅ¼ywajÄ…cych bibliotek PNG.
 
-%description devel -l pt_BR
-Arquivos de inclusão e bibliotecas estáticas que são necessários
+%description devel -l pt_BR.UTF-8
+Arquivos de inclusÃ£o e bibliotecas estÃ¡ticas que sÃ£o necessÃ¡rios
 somente para o desenvolvimento de programas que usam a biblioteca PNG.
 
-%description devel -l tr
-PNG kitaplýðýný kullanan programlar geliþtirmek için gereken
-kitaplýklar ve baþlýk dosyalarý.
+%description devel -l tr.UTF-8
+PNG kitaplÄ±ÄŸÄ±nÄ± kullanan programlar geliÅŸtirmek iÃ§in gereken
+kitaplÄ±klar ve baÅŸlÄ±k dosyalarÄ±.
 
 %package static
 Summary:	Static PNG libraries
-Summary(de):	Statischen PNG Libraries
-Summary(pl):	Biblioteki statyczne PNG
-Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libpng
+Summary(de.UTF-8):   Statischen PNG Libraries
+Summary(pl.UTF-8):   Biblioteki statyczne PNG
+Summary(pt_BR.UTF-8):   Bibliotecas estÃ¡ticas para desenvolvimento com libpng
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static PNG libraries.
 
-%description static -l de
+%description static -l de.UTF-8
 Statischen PNG Libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne PNG.
 
-%description static -l pt_BR
-Bibliotecas estáticas para desenvolvimento com libpng.
+%description static -l pt_BR.UTF-8
+Bibliotecas estÃ¡ticas para desenvolvimento com libpng.
 
 %package progs
 Summary:	libpng utility programs
-Summary(pl):	Narzêdzia do plików PNG
+Summary(pl.UTF-8):   NarzÄ™dzia do plikÃ³w PNG
 Group:		Applications/Graphics
 
 %description progs
 This package contains utility programs to convert PNG files to and
 from PNM files.
 
-%description progs -l pl
-Narzêdzia do konwersji plików PNG z lub do plików PNM.
+%description progs -l pl.UTF-8
+NarzÄ™dzia do konwersji plikÃ³w PNG z lub do plikÃ³w PNM.
 
 %prep
 %setup -q
