@@ -1,11 +1,11 @@
 # NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
 Summary:	PNG library
-Summary(de.UTF-8):   PNG-Library
-Summary(es.UTF-8):   Biblioteca PNG
-Summary(fr.UTF-8):   Librarie PNG
-Summary(pl.UTF-8):   Biblioteka PNG
-Summary(pt_BR.UTF-8):   Biblioteca PNG
-Summary(tr.UTF-8):   PNG kitaplığı
+Summary(de.UTF-8):	PNG-Library
+Summary(es.UTF-8):	Biblioteca PNG
+Summary(fr.UTF-8):	Librarie PNG
+Summary(pl.UTF-8):	Biblioteka PNG
+Summary(pt_BR.UTF-8):	Biblioteca PNG
+Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
 Version:	1.2.16
 Release:	1
@@ -69,12 +69,12 @@ bir resim formatıdır.
 
 %package devel
 Summary:	Header files for libpng
-Summary(de.UTF-8):   libpng Headers
-Summary(es.UTF-8):   Archivos de inclusión y bibliotecas estáticas
-Summary(fr.UTF-8):   en-têtes et bibliothèques statiques
-Summary(pl.UTF-8):   Pliki nagłówkowe libpng
-Summary(pt_BR.UTF-8):   Arquivos de inclusão e bibliotecas estáticas
-Summary(tr.UTF-8):   başlık dosyaları ve statik kitaplıklar
+Summary(de.UTF-8):	libpng Headers
+Summary(es.UTF-8):	Archivos de inclusión y bibliotecas estáticas
+Summary(fr.UTF-8):	en-têtes et bibliothèques statiques
+Summary(pl.UTF-8):	Pliki nagłówkowe libpng
+Summary(pt_BR.UTF-8):	Arquivos de inclusão e bibliotecas estáticas
+Summary(tr.UTF-8):	başlık dosyaları ve statik kitaplıklar
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
@@ -110,9 +110,9 @@ kitaplıklar ve başlık dosyaları.
 
 %package static
 Summary:	Static PNG libraries
-Summary(de.UTF-8):   Statischen PNG Libraries
-Summary(pl.UTF-8):   Biblioteki statyczne PNG
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento com libpng
+Summary(de.UTF-8):	Statischen PNG Libraries
+Summary(pl.UTF-8):	Biblioteki statyczne PNG
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com libpng
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -130,7 +130,7 @@ Bibliotecas estáticas para desenvolvimento com libpng.
 
 %package progs
 Summary:	libpng utility programs
-Summary(pl.UTF-8):   Narzędzia do plików PNG
+Summary(pl.UTF-8):	Narzędzia do plików PNG
 Group:		Applications/Graphics
 
 %description progs
