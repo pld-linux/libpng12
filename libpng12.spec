@@ -21,6 +21,7 @@ Patch3:		%{name}-libdirfix.patch
 Patch4:		%{name}-gcc-pch.patch
 Patch5:		%{name}-export_old.patch
 Patch6:		%{name}-revert.patch
+Patch7:		%{name}-const.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
@@ -149,6 +150,7 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
