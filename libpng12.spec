@@ -1,4 +1,7 @@
 # NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
+
+%define		_rc	rc1
+
 Summary:	PNG library
 Summary(de.UTF-8):	PNG-Library
 Summary(es.UTF-8):	Biblioteca PNG
@@ -7,13 +10,13 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.19
-Release:	1
+Version:	1.2.20
+Release:	0.%{_rc}.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5:	02aac1f1aecc096f6045676e977ec641
+Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}%{_rc}.tar.bz2
+# Source0-md5:	ec17fc8c531e2a94a49dd83373fc6213
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -141,7 +144,7 @@ from PNM files.
 Narzędzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{_rc}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
