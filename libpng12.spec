@@ -161,7 +161,7 @@ ln -sf scripts/makefile.linux ./Makefile
 	prefix=%{_prefix} \
 	LIBPATH=%{_libdir} \
 	CC="%{__cc}" \
-%ifarch %{x8664} sparc sparc64
+%ifarch %{x8664} sparc sparcv9 sparc64
 	OPT_FLAGS="%{rpmcflags} -DPNG_NO_MMX_CODE"
 %else
 	OPT_FLAGS="%{rpmcflags}"
