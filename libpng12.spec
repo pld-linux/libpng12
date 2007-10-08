@@ -7,13 +7,13 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.20
+Version:	1.2.21
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5:	8c186d9da3d011e2c3076b28f9c6be7b
+# Source0-md5:	b0cda5e10e8165e5f151e674e1a67983
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -145,7 +145,7 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+#%%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
