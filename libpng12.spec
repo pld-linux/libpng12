@@ -17,10 +17,9 @@ Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
-Patch3:		%{name}-libdirfix.patch
-Patch4:		%{name}-gcc-pch.patch
-Patch5:		%{name}-export_old.patch
-Patch6:		%{name}-revert.patch
+Patch3:		%{name}-gcc-pch.patch
+Patch4:		%{name}-export_old.patch
+Patch5:		%{name}-revert.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
@@ -145,10 +144,9 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-#%%patch3 -p1
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
