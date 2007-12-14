@@ -8,7 +8,7 @@ Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
 Version:	1.2.23
-Release:	1
+Release:	2
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -131,6 +131,7 @@ Bibliotecas estáticas para desenvolvimento com libpng.
 Summary:	libpng utility programs
 Summary(pl.UTF-8):	Narzędzia do plików PNG
 Group:		Applications/Graphics
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description progs
 This package contains utility programs to convert PNG files to and
