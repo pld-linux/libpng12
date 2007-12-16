@@ -7,19 +7,18 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.23
-Release:	2
+Version:	1.2.24
+Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.bz2
-# Source0-md5:	b1b3794a8b80dd298d4d216f4886ad52
+# Source0-md5:	1e676c5cc7dfa4ef78affe8fb8f1011d
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
-Patch3:		%{name}-gcc-pch.patch
-Patch4:		%{name}-export_old.patch
-Patch5:		%{name}-revert.patch
+Patch3:		%{name}-export_old.patch
+Patch4:		%{name}-revert.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
@@ -147,7 +146,6 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
