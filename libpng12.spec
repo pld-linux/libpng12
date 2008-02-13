@@ -8,7 +8,7 @@ Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
 Version:	1.2.24
-Release:	2
+Release:	3
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -19,6 +19,8 @@ Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
 Patch3:		%{name}-export_old.patch
 Patch4:		%{name}-revert.patch
+# http://littlesvr.ca/apng/
+Patch5:		%{name}-apng.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
@@ -27,6 +29,7 @@ Provides:	libpng.so.3()(64bit)
 %else
 Provides:	libpng.so.3
 %endif
+Provides:	libpng(APNG) = 0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -76,6 +79,7 @@ Summary(tr.UTF-8):	başlık dosyaları ve statik kitaplıklar
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
+Provides:	libpng(APNG)-devel = 0.10
 Conflicts:	libpng < 1.0.15
 
 %description devel
@@ -113,6 +117,7 @@ Summary(pl.UTF-8):	Biblioteki statyczne PNG
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com libpng
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Provides:	libpng(APNG)-static = 0.10
 
 %description static
 Static PNG libraries.
@@ -146,6 +151,7 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p0
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
