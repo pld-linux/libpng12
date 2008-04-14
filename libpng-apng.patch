@@ -1394,19 +1394,19 @@ Index: pngrutil.c
  /* This function is called when we haven't found a handler for a
     chunk.  If there isn't a problem with the chunk itself (ie bad
     chunk name, CRC, or a critical chunk), the chunk is silently ignored
-@@ -3138,8 +3305,10 @@
-    if (row_bytes > (png_uint_32)65536L)
-       png_error(png_ptr, "This image requires a row greater than 64KB");
- #endif
--   png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr, row_bytes+64);
--   png_ptr->row_buf = png_ptr->big_row_buf+32;
-+   if (png_ptr->big_row_buf == NULL)
-+      png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr, row_bytes+64);
-+   if (png_ptr->row_buf == NULL)
-+      png_ptr->row_buf = png_ptr->big_row_buf+32;
+@@ -3318,8 +3318,10 @@
+    {
+      if (png_ptr->big_row_buf)
+         png_free(png_ptr,png_ptr->big_row_buf);
+-     png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr, row_bytes+64);
+-     png_ptr->row_buf = png_ptr->big_row_buf+32;
++     if (png_ptr->big_row_buf == NULL)
++        png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr, row_bytes+64);
++     if (png_ptr->row_buf == NULL)
++        png_ptr->row_buf = png_ptr->big_row_buf+32;
+      png_ptr->old_big_row_buf_size = row_bytes+64;
+    }
  
- #ifdef PNG_MAX_MALLOC_64K
-    if ((png_uint_32)png_ptr->rowbytes + 1 > (png_uint_32)65536L)
 @@ -3161,4 +3330,82 @@
  
     png_ptr->flags |= PNG_FLAG_ROW_INIT;
