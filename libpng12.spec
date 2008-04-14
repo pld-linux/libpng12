@@ -21,6 +21,7 @@ Patch3:		%{name}-export_old.patch
 Patch4:		%{name}-revert.patch
 # http://littlesvr.ca/apng/
 Patch5:		%{name}-apng.patch
+Patch6:		%{name}-cve.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	lzma >= 1:4.42
 BuildRequires:	rpmbuild(macros) >= 1.213
@@ -154,6 +155,7 @@ lzma -dc %{SOURCE0} | tar xf - -C ..
 %patch3 -p1
 %patch4 -p1
 %patch5 -p0
+%patch6 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
