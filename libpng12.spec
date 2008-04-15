@@ -8,7 +8,7 @@ Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
 Version:	1.2.26
-Release:	2
+Release:	3
 Epoch:		2
 License:	distributable
 Group:		Libraries
