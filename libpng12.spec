@@ -7,13 +7,13 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.32
+Version:	1.2.33
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.lzma
-# Source0-md5:	4b86e9d73d86744a263bb69671ab74d0
+# Source0-md5:	bc4f03c61e74ddca22620888b1118d48
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
