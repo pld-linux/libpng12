@@ -1,0 +1,1 @@
+- updated to 1.2.33 [Fix potential memory leak in png_handle_tXTt()]
