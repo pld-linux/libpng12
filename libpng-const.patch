@@ -1,0 +1,18 @@
+--- libpng-1.2.18/pnggccrd.c.orig	2007-05-16 01:52:23.000000000 +0200
++++ libpng-1.2.18/pnggccrd.c	2007-05-19 10:06:01.015691713 +0200
+@@ -352,6 +352,7 @@
+ void /* PRIVATE */
+ png_squelch_warnings(void)
+ {
++#if 0
+ #ifdef PNG_THREAD_UNSAFE_OK
+    _dif = _dif;
+    _patemp = _patemp;
+@@ -377,6 +378,7 @@
+    _mask48_2 = _mask48_2;
+    _mask48_1 = _mask48_1;
+    _mask48_0 = _mask48_0;
++#endif
+ }
+ #endif /* PNG_MMX_CODE_SUPPORTED */
+ 

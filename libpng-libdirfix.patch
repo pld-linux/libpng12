@@ -1,0 +1,22 @@
+--- libpng-1.2.9/scripts/makefile.linux.libdirfix	2003-02-24 19:32:51.000000000 -0500
++++ libpng-1.2.9/scripts/makefile.linux	2003-02-24 19:33:26.000000000 -0500
+@@ -60,7 +60,7 @@
+ 	$(RANLIB) $@
+ 
+ libpng.pc:
+-	cat scripts/libpng.pc.in | sed -e s\!@PREFIX@!$(prefix)! > libpng.pc
++	cat scripts/libpng.pc.in | sed -e "s,@prefix@,$(prefix),;s,@exec_prefix@,$(exec_prefix),;s,@libdir@,$(LIBPATH),;s,@includedir@,$(INCPATH),;s,@PNGLIB_VERSION@,$(PNGMIN),;s,@PNGLIB_MAJOR@,12," > libpng.pc
+ 
+ $(LIBNAME).so: $(LIBNAME).so.$(PNGMAJ)
+ 	ln -sf $(LIBNAME).so.$(PNGMAJ) $(LIBNAME).so
+--- libpng-1.2.9/scripts/makefile.gcmmx.libdirfix	2003-02-24 19:32:51.000000000 -0500
++++ libpng-1.2.9/scripts/makefile.gcmmx	2003-02-24 19:33:26.000000000 -0500
+@@ -60,7 +60,7 @@
+ 	$(RANLIB) $@
+ 
+ libpng.pc:
+-	cat scripts/libpng.pc.in | sed -e s\!@PREFIX@!$(prefix)! > libpng.pc
++	cat scripts/libpng.pc.in | sed -e "s,@prefix@,$(prefix),;s,@exec_prefix@,$(exec_prefix),;s,@libdir@,$(LIBPATH),;s,@includedir@,$(INCPATH),;s,@PNGLIB_VERSION@,$(PNGMIN),;s,@PNGLIB_MAJOR@,12," > libpng.pc
+ 
+ $(LIBNAME).so: $(LIBNAME).so.$(PNGMAJ)
+ 	ln -sf $(LIBNAME).so.$(PNGMAJ) $(LIBNAME).so
