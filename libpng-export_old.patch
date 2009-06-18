@@ -1,6 +1,6 @@
---- libpng-1.2.10/png.h.orig	2006-04-23 20:45:34.000000000 +0200
-+++ libpng-1.2.10/png.h	2006-05-14 20:38:24.000000000 +0200
-@@ -1699,16 +1699,16 @@
+--- libpng-1.2.37/png.h~	2009-06-04 13:08:00.000000000 +0200
++++ libpng-1.2.37/png.h	2009-06-18 10:46:50.000000000 +0200
+@@ -1827,16 +1827,16 @@
  extern PNG_EXPORT(void,png_destroy_read_struct) PNGARG((png_structpp
     png_ptr_ptr, png_infopp info_ptr_ptr, png_infopp end_info_ptr_ptr));
  
@@ -22,20 +22,20 @@
  
  /* set the libpng method of handling chunk CRC errors */
  extern PNG_EXPORT(void,png_set_crc_action) PNGARG((png_structp png_ptr,
---- libpng-1.2.10/pngread.c.orig	2006-04-23 20:45:34.000000000 +0200
-+++ libpng-1.2.10/pngread.c	2006-05-14 20:39:36.000000000 +0200
-@@ -1151,7 +1151,7 @@
+--- libpng-1.2.37/pngread.c~	2009-06-04 13:08:00.000000000 +0200
++++ libpng-1.2.37/pngread.c	2009-06-18 10:49:04.000000000 +0200
+@@ -1157,7 +1157,7 @@
  }
  
- /* free all memory used by the read (old method) */
+ /* Free all memory used by the read (old method) */
 -void /* PRIVATE */
 +void PNGAPI
  png_read_destroy(png_structp png_ptr, png_infop info_ptr, png_infop end_info_ptr)
  {
  #ifdef PNG_SETJMP_SUPPORTED
---- libpng-1.2.10/pngwrite.c.orig	2006-04-23 20:45:35.000000000 +0200
-+++ libpng-1.2.10/pngwrite.c	2006-05-14 20:39:49.000000000 +0200
-@@ -1052,7 +1052,7 @@
+--- libpng-1.2.37/pngwrite.c~	2009-06-04 13:08:00.000000000 +0200
++++ libpng-1.2.37/pngwrite.c	2009-06-18 10:50:07.000000000 +0200
+@@ -1082,7 +1082,7 @@
  
  
  /* Free any memory used in png_ptr struct (old method) */
