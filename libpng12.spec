@@ -7,13 +7,13 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.38
+Version:	1.2.40
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.lzma
-# Source0-md5:	f71bd46d01dea68401a895239e45d175
+Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.xz
+# Source0-md5:	785dc0cb147f293fadcf5ef2fbad7bf7
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -22,7 +22,7 @@ Patch4:		%{name}-revert.patch
 # http://littlesvr.ca/apng/
 Patch5:		%{name}-apng.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
-BuildRequires:	lzma >= 1:4.42
+BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	zlib-devel
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
@@ -147,7 +147,7 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
 %setup -q -c -T
-lzma -dc %{SOURCE0} | tar xf - -C ..
+lzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
