@@ -22,8 +22,8 @@ Patch4:		%{name}-revert.patch
 # http://littlesvr.ca/apng/
 Patch5:		%{name}-apng.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
-BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	rpmbuild(macros) >= 1.213
+BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	zlib-devel
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libpng.so.3()(64bit)
@@ -147,7 +147,7 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 
 %prep
 %setup -q -c -T
-lzcat -dc %{SOURCE0} | tar xf - -C ..
+xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
