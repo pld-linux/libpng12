@@ -9,7 +9,7 @@ Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
 Version:	1.2.41
-Release:	0.1
+Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -154,7 +154,7 @@ xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p0
+%patch5 -p1
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
