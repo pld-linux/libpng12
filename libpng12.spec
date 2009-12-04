@@ -154,7 +154,7 @@ xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+%patch5 -p0
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
