@@ -1,4 +1,5 @@
 # NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
+# TODO: update apng.patch when possible
 Summary:	PNG library
 Summary(de.UTF-8):	PNG-Library
 Summary(es.UTF-8):	Biblioteca PNG
@@ -7,13 +8,13 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.40
+Version:	1.2.41
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libpng/%{name}-%{version}.tar.xz
-# Source0-md5:	785dc0cb147f293fadcf5ef2fbad7bf7
+# Source0-md5:	5aca52d472cb53035a7424f5ce3650ef
 Patch0:		%{name}-pngminus.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-norpath.patch
@@ -153,7 +154,8 @@ xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p0
+# to be updated
+#%%patch5 -p0
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
