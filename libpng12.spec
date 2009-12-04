@@ -9,7 +9,7 @@ Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
 Version:	1.2.41
-Release:	1
+Release:	0.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
@@ -25,6 +25,7 @@ Patch5:		%{name}-apng.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	xz >= 1:4.999.7
+BuildRequires:	apng-patch-todo
 BuildRequires:	zlib-devel
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libpng.so.3()(64bit)
