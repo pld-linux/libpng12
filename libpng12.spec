@@ -25,7 +25,6 @@ Patch5:		%{name}-apng.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	xz >= 1:4.999.7
-BuildRequires:	apng-patch-todo
 BuildRequires:	zlib-devel
 %ifarch %{x8664} ia64 ppc64 s390x sparc64
 Provides:	libpng.so.3()(64bit)
@@ -155,8 +154,7 @@ xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-# to be updated
-#%%patch5 -p0
+%patch5 -p0
 
 %ifarch %{ix86}
 ln -sf scripts/makefile.gcmmx ./Makefile
