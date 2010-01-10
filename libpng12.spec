@@ -1,4 +1,3 @@
-# NOTE: try to switch to ac/am/lt build on 1.2.x->1.4.x upgrade
 Summary:	PNG library
 Summary(de.UTF-8):	PNG-Library
 Summary(es.UTF-8):	Biblioteca PNG
@@ -7,29 +6,20 @@ Summary(pl.UTF-8):	Biblioteka PNG
 Summary(pt_BR.UTF-8):	Biblioteca PNG
 Summary(tr.UTF-8):	PNG kitaplığı
 Name:		libpng
-Version:	1.2.42
-Release:	1
+Version:	1.4.0
+Release:	0.1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libpng/%{name}-%{version}.tar.xz
-# Source0-md5:	dcf4892946e2d6aab6e46d02ed774315
+# Source0-md5:	2ce652ebe1589d7b2357aa6d0eccd07c
 Patch0:		%{name}-pngminus.patch
-Patch1:		%{name}-opt.patch
-Patch2:		%{name}-norpath.patch
-Patch3:		%{name}-export_old.patch
-Patch4:		%{name}-revert.patch
-# http://littlesvr.ca/apng/
-Patch5:		%{name}-apng.patch
+# http://littlesvr.ca/apng/diff/%{name}-%{version}-apng.patch | dos2unix
+Patch1:		%{name}-apng.patch
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	xz >= 1:4.999.7
 BuildRequires:	zlib-devel
-%ifarch %{x8664} ia64 ppc64 s390x sparc64
-Provides:	libpng.so.3()(64bit)
-%else
-Provides:	libpng.so.3
-%endif
 Provides:	libpng(APNG) = 0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -149,28 +139,11 @@ Narzędzia do konwersji plików PNG z lub do plików PNM.
 %setup -q -c -T
 xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p0
-
-%ifarch %{ix86}
-ln -sf scripts/makefile.gcmmx ./Makefile
-%else
-ln -sf scripts/makefile.linux ./Makefile
-%endif
+%patch1 -p0
 
 %build
-%{__make} \
-	prefix=%{_prefix} \
-	LIBPATH=%{_libdir} \
-	CC="%{__cc}" \
-%ifarch %{x8664} sparc sparcv9 sparc64
-	OPT_FLAGS="%{rpmcflags} -DPNG_NO_MMX_CODE"
-%else
-	OPT_FLAGS="%{rpmcflags}"
-%endif
+%configure
+%{__make}
 
 %{__make} -C contrib/pngminus -f makefile.std \
 	LIBPATH=%{_libdir} \
@@ -179,14 +152,10 @@ ln -sf scripts/makefile.linux ./Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}} \
-	$RPM_BUILD_ROOT{%{_pkgconfigdir},%{_examplesdir}/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	prefix=%{_prefix} \
-	LIBPATH=%{_libdir} \
-	MANPATH=%{_mandir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 install contrib/pngminus/{png2pnm,pnm2png} $RPM_BUILD_ROOT%{_bindir}
 install example.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -199,33 +168,34 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ANNOUNCE CHANGES KNOWNBUG README LICENSE
-%attr(755,root,root) %{_libdir}/libpng12.so.*.*.*
-%attr(755,root,root) %{_libdir}/libpng.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpng12.so.0
-# alternative soname (symlink in PLD, so must be packaged)
-%attr(755,root,root) %{_libdir}/libpng.so.3
+%doc ANNOUNCE CHANGES LICENSE README TODO
+%attr(755,root,root) %{_libdir}/libpng14.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libpng14.so.14
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.txt
-%attr(755,root,root) %{_bindir}/libpng12-config
+%doc libpng-%{version}.txt
+%attr(755,root,root) %{_bindir}/libpng14-config
 %attr(755,root,root) %{_bindir}/libpng-config
-%attr(755,root,root) %{_libdir}/libpng12.so
+%attr(755,root,root) %{_libdir}/libpng14.so
 %attr(755,root,root) %{_libdir}/libpng.so
-%{_pkgconfigdir}/libpng12.pc
+%{_libdir}/libpng14.la
+%{_libdir}/libpng.la
+%{_pkgconfigdir}/libpng14.pc
 %{_pkgconfigdir}/libpng.pc
-%{_includedir}/libpng12
-%{_includedir}/libpng
+%{_includedir}/libpng14
 %{_includedir}/png*.h
-%{_mandir}/man?/*
+%{_mandir}/man3/libpng.3*
+%{_mandir}/man3/libpngpf.3*
+%{_mandir}/man5/png.5*
 %{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libpng12.a
+%{_libdir}/libpng14.a
 %{_libdir}/libpng.a
 
 %files progs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/p*
+%attr(755,root,root) %{_bindir}/png2pnm
+%attr(755,root,root) %{_bindir}/pnm2png

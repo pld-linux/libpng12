@@ -5,7 +5,7 @@
  #PNGLIBS = $(PNGPATH)/lib/libpng12.a
  PNGINC = -I../..
 -PNGLIB = -L../.. -lpng
-+PNGLIB = -L../.. -L../../.libs -lpng12
++PNGLIB = -L../.. -L../../.libs -lpng14
  PNGLIBS = ../../libpng.a
  
  #ZPATH = /usr/local
