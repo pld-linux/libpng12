@@ -25,6 +25,7 @@ Provides:	libpng.so.3()(64bit)
 Provides:	libpng.so.3
 %endif
 Provides:	libpng12(APNG) = 0.10
+Obsoletes:	libpng < 2:1.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,6 +49,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	zlib-devel
 Provides:	libpng12(APNG)-devel = 0.10
+Obsoletes:	libpng-devel < 2:1.4.0
 
 %description devel
 The header files are only needed for development of programs using the
@@ -63,6 +65,7 @@ Summary(pl.UTF-8):	Biblioteka statyczna PNG w wersji 1.2.x
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 Provides:	libpng12(APNG)-static = 0.10
+Obsoletes:	libpng-static < 2:1.4.0
 
 %description static
 Static PNG library version 1.2.x.
