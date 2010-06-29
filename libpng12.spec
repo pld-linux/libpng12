@@ -1,13 +1,13 @@
 Summary:	PNG library version 1.2.x
 Summary(pl.UTF-8):	Biblioteka PNG w wersji 1.2.x
 Name:		libpng12
-Version:	1.2.42
-Release:	2
+Version:	1.2.44
+Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libpng/libpng-%{version}.tar.xz
-# Source0-md5:	dcf4892946e2d6aab6e46d02ed774315
+# Source0-md5:	098ab673ab74015978db98667febc4a9
 Patch0:		libpng-pngminus.patch
 Patch1:		libpng-opt.patch
 Patch2:		libpng-norpath.patch
