@@ -96,6 +96,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man{3,5}} \
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpng.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpng12.la
+
 # these come from libpng (1.4.x) now
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/libpng-config \
 	$RPM_BUILD_ROOT%{_includedir}/png*.h \
