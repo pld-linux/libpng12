@@ -1,20 +1,20 @@
 Summary:	PNG library version 1.2.x
 Summary(pl.UTF-8):	Biblioteka PNG w wersji 1.2.x
 Name:		libpng12
-Version:	1.2.50
+Version:	1.2.51
 Release:	1
 Epoch:		2
 License:	distributable
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libpng/libpng-%{version}.tar.xz
-# Source0-md5:	a3e00fccbfe356174ab515b5c00641c7
+# Source0-md5:	4efba67fa5aa2b785c6fcec2cc3e90c9
 Patch0:		libpng-pngminus.patch
 Patch1:		libpng-opt.patch
 Patch2:		libpng-norpath.patch
 Patch3:		libpng-export_old.patch
 Patch4:		libpng-revert.patch
-# http://littlesvr.ca/apng/
-Patch5:		libpng-apng.patch
+Patch5:		http://downloads.sourceforge.net/libpng-apng/libpng-%{version}-apng.patch.gz
+# Patch5-md5:	b4d7d2781c40c1b732b64387c2ede059
 URL:		http://www.libpng.org/pub/png/libpng.html
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	tar >= 1:1.22
@@ -82,7 +82,7 @@ xzcat -dc %{SOURCE0} | tar xf - -C ..
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p0
+%patch5 -p1
 
 %build
 %configure
