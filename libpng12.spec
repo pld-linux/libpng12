@@ -77,12 +77,12 @@ Biblioteka statyczna PNG w wersji 1.2.x.
 %prep
 %setup -q -c -T -n libpng-%{version}
 xzcat -dc %{SOURCE0} | tar xf - -C ..
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
+%patch -P4 -p1
+%patch -P5 -p1
 
 %build
 %configure
